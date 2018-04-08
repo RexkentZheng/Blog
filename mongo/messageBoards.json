@@ -1,0 +1,49 @@
+{ 
+    "_id" : ObjectId("5ac9c5da48b64e173438eb91"), 
+    "messageBoardId" : 201804080510000.0, 
+    "messageBoardUserName" : "A", 
+    "messageBoardContent" : "12312312312", 
+    "messageBoardCreatedTime" : "2018-04-08 15:33", 
+    "messageBoardChildren" : [
+        {
+            "_id" : ObjectId("5ac9de47abd4261b1853fb67"), 
+            "messageBoardUserName" : "A", 
+            "messageBoardContent" : "666", 
+            "messageBoardCreatedTime" : "2018-04-08 17:17"
+        }, 
+        {
+            "_id" : ObjectId("5ac9de96abd4261b1853fb68"), 
+            "messageBoardUserName" : "A", 
+            "messageBoardContent" : "777", 
+            "messageBoardCreatedTime" : "2018-04-08 17:19"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ac9d97043e53b235098df78"), 
+    "messageBoardId" : 201804080510000.0, 
+    "messageBoardUserName" : "A", 
+    "messageBoardContent" : "12312321312312312312", 
+    "messageBoardCreatedTime" : "2018-04-08 16:57", 
+    "messageBoardChildren" : [
+        {
+            "_id" : ObjectId("5ac9e9f899cac41940cdaafe"), 
+            "messageBoardUserName" : "admin", 
+            "messageBoardContent" : "nihao", 
+            "messageBoardCreatedTime" : "2018-04-08 18:07"
+        }
+    ], 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5aca20dfcd9ac51f788d7c65"), 
+    "messageBoardId" : 201804080510000.0, 
+    "messageBoardUserName" : "A", 
+    "messageBoardContent" : "666", 
+    "messageBoardCreatedTime" : "2018-04-08 22:02", 
+    "messageBoardChildren" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}

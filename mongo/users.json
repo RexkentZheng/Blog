@@ -1,0 +1,40 @@
+{ 
+    "_id" : ObjectId("5ac854b5ddea621f24ded214"), 
+    "userName" : "A", 
+    "userPwd" : "202cb962ac59075b964b07152d234b70", 
+    "userId" : 201804070210000.0, 
+    "userType" : NumberInt(2), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ac854e6ddea621f24ded215"), 
+    "userName" : "B", 
+    "userPwd" : "202cb962ac59075b964b07152d234b70", 
+    "userId" : 201804070210001.0, 
+    "userType" : NumberInt(2), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ac8552eddea621f24ded216"), 
+    "userName" : "C", 
+    "userPwd" : "202cb962ac59075b964b07152d234b70", 
+    "userId" : 201804070210002.0, 
+    "userType" : NumberInt(2), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5ac9e8deb2a2aee2add90428"), 
+    "userName" : "admin", 
+    "userPwd" : "21232f297a57a5a743894a0e4a801fc3", 
+    "userId" : 201804070210001.0, 
+    "userType" : NumberInt(1), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5aca2213cd9ac51f788d7c66"), 
+    "userName" : "nnn", 
+    "userPwd" : "e10adc3949ba59abbe56e057f20f883e", 
+    "userId" : 201804080210000.0, 
+    "userType" : NumberInt(2), 
+    "__v" : NumberInt(0)
+}
