@@ -610,3 +610,99 @@ a:hover {
   word-break:break-all;  
   overflow: hidden;  
 }
+.question-details > ul .support{
+	margin-left: 15px;
+}
+.question-details > ul .support .el-button{
+	float: left;
+}
+.question-details > ul .support p{
+	float: left;
+	margin: 5px 0 0 3px;
+}
+.question-details > ul .support .comment{
+	float: right;
+	margin-right: 15px;
+}
+.question-details > ul > .answer{
+	margin: 15px 10px 0 0;
+	text-align: center;
+}
+.question-details > ul .answer .el-input{
+	width: 400px;
+	float: right;
+	margin-bottom: 10px;
+}
+.question-details > ul .answer .el-button{
+	margin-top: 10px;
+}
+.question-details > ul .answer .el-button:nth-child(2){
+	margin-left: 10px;
+}
+.question-details > ul .answer-details{
+	margin: 10px 15px 0;
+}
+.question-details > ul .answer-details .one-piece {
+	padding-bottom: 8px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid gray;
+}
+.question-details > ul .answer-details .one-piece p{
+	margin: 10px 0 0 0;
+}
+.question-details > ul .answer-details .one-piece .answer-author{
+	float: left;
+}
+.question-details > ul .answer-details .one-piece .answer-content{
+	text-align: left;
+}
+.question-details > ul .answer-details .one-piece .el-icon-caret-bottom,
+.question-details > ul .answer-details .one-piece .el-icon-caret-top
+{
+	float: left;
+	margin: 10px 0 0 30px;
+	color: #3a8ee6;
+}
+.question-details > ul .answer-details .one-piece .del,
+.question-details > ul .answer-details .one-piece .rep{
+	float: right;
+	color: #3a8ee6;
+	cursor: pointer;
+}
+.question-details > ul .answer-details .one-piece .del{
+	margin-left: 5px;
+}
+.question-details > ul .answer-details .one-piece .created-time{
+	float: right;
+	font-size: 13px;
+	color: gray;
+}
+.question-details > ul .answer-details .one-piece .main-content{
+	float: left;
+}
+.question-details > ul .answer-details .one-piece .reply-new{
+	width: 400px;
+	float: right;
+	margin-top: 10px;
+}
+.question-details > ul .answer-details .one-piece .reply-new .el-input{
+	width: 350px;
+	float: left;
+	margin: 0 0 10px 50px;
+}
+.question-details > ul .answer-details .one-piece .reply-new .el-button{
+	float: right;
+}
+.question-details > ul .answer-details .one-piece .reply-new button:nth-child(2){
+	margin-left: 10px;
+}
+.question-details > ul .answer-details .one-piece .content-children{
+	width: 350px;
+	float: right;
+}
+.question-details > ul .answer-details .one-piece .content-children li p:nth-child(1){
+	float: left;
+}
+.question-details > ul .answer-details .one-piece .content-children li p:nth-child(2){
+	float: right;
+}

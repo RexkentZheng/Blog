@@ -7,14 +7,18 @@ const questionSchema = new Schema({
 	'questionAuthor':String,
 	'questionTitle':String,
 	'questionContent':String,
-	'questionCreatorName':String,
 	'questionCreatedTime':String,
 	'like':[],
 	'questionAnswers':[
 		{
-			'answerCreatorName':String,
+			'answerAuthor':String,
 			'answerContent':String,
 			'answerCreatedTime':String,
+			'answerChildren':[{
+				'commentUserName':String,
+				'commentContent':String,
+				'commentCreatedTime':String,
+			}]
 		}
 	]
 })

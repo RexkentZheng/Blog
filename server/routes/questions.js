@@ -62,13 +62,7 @@ router.post('/create',(req,res,next)=>{
         'questionContent':content,
         'questionCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
         'like':[],
-        'questionAnswers':[
-          {
-            'answerCreatorName':'String',
-            'answerContent':'String',
-            'answerCreatedTime':'String'
-          }
-        ]
+        'questionAnswers':[]
       },(err,doc)=>{
         if (err) {
           getWrong(res, err);
@@ -128,6 +122,124 @@ router.post('/update',(req,res,next)=>{
 //获取全部问答
 router.post('/all',(req,res,next)=>{
   Question.find({},(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//问答点赞
+router.post('/support',(req,res,next)=>{
+  let { _id, userName } = req.body;
+  Question.findOne({_id},(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      console.log(doc.like);
+      console.log(doc.like.indexOf(userName));
+      if (doc.like.indexOf(userName) >= 0) {
+        res.json({
+          status:10001,
+          msg:'已点过'
+        })
+      } else {
+        Question.update({
+          _id
+        },{
+          $addToSet:{
+            'like': userName
+          }
+        },(err1,doc1)=>{
+          if (err1) {
+            getWrong(res,err1);
+          } else {
+            getRight(res,doc1);
+          }
+        })
+      }
+    }
+  })
+})
+
+//问答取消赞
+router.post('/unSupport',(req,res,next)=>{
+  let { _id, userName } = req.body;
+  Question.update({
+    _id
+  },{
+    $pull:{
+      'like': userName
+    }
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//回答问答
+router.post('/answer',(req,res,next)=>{
+  let { _id, answerAuthor, answerContent } = req.body;
+  console.log(answerAuthor)
+  Question.update({
+    _id
+  },{
+    $addToSet:{
+      'questionAnswers':{
+        'answerAuthor':answerAuthor,
+        'answerContent':answerContent,
+        'answerCreatedTime':new Date().Format('yyyy-MM-dd hh:mm')
+      }
+    }
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//删除回答
+router.post('/delAnswer',(req,res,next)=>{
+  let { questionId, answerId } = req.body;
+  Question.update({
+    '_id':questionId
+  },{
+    $pull:{
+      'questionAnswers':{
+        '_id':answerId
+      }
+    }
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//回复回答
+router.post('/reply',(req,res,next)=>{
+  let { _id, answerId, commentUserName, commentContent } = req.body;
+  Question.update({
+    '_id':_id,
+    'questionAnswers._id':answerId,
+    '$atomic' : 'true'
+  },{
+    $push: {
+      'questionAnswers.$.answerChildren': {
+        'commentUserName':commentUserName,
+        'commentContent':commentContent,
+        'commentCreatedTime':new Date().Format('yyyy-MM-dd hh:mm')
+      },
+    },
+  },(err,doc)=>{
     if (err) {
       getWrong(res,err);
     } else {
