@@ -13,7 +13,12 @@ const articleSchema = new Schema({
 		{
 			'commentUserName':String,
 			'commentContent':String,
-			'commentTime':String
+			'commentCreatedTime':String,
+			'commentChildren':[{
+				'commentUserName':String,
+				'commentContent':String,
+				'commentCreatedTime':String,
+			}]
 		}
 	]
 })

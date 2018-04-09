@@ -187,4 +187,70 @@ router.post('/unSupport',(req,res,next)=>{
     }
   })
 })
+
+//评论文章
+router.post('/comment',(req,res,next)=>{
+  let { _id, commentUserName, commentContent } = req.body;
+  Article.update({
+    _id
+  },{
+    $addToSet:{
+      'comments':{
+        'commentUserName':commentUserName,
+        'commentContent':commentContent,
+        'commentCreatedTime':new Date().Format('yyyy-MM-dd hh:mm')
+      }
+    }
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//删除评论
+router.post('/delComment',(req,res,next)=>{
+  let { articleId, commentId } = req.body;
+  Article.update({
+    '_id':articleId
+  },{
+    $pull:{
+      'comments':{
+        '_id':commentId
+      }
+    }
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//回复评论
+router.post('/reply',(req,res,next)=>{
+  let { _id, commentId, commentUserName, commentContent } = req.body;
+  Article.update({
+    '_id':_id,
+    'comments._id':commentId,
+    '$atomic' : 'true'
+  },{
+    $push: {
+      'comments.$.commentChildren': {
+        'commentUserName':commentUserName,
+        'commentContent':commentContent,
+        'commentCreatedTime':new Date().Format('yyyy-MM-dd hh:mm')
+      },
+    },
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
 module.exports = router;

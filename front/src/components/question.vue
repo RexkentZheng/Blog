@@ -6,7 +6,7 @@
 		</div>
 		<div class="list-part">
 			<ul>
-				<li v-for='question in questions'>
+				<li v-for='question in currentQuestions'>
 					<ul class="one-piece">
 						<li class="clearfix">
 							<p>
@@ -23,10 +23,8 @@
 				</li>
 			</ul>
 			<el-pagination
-	      @size-change="handleSizeChange"
-	      @current-change="handleCurrentChange"
-	      :current-page.sync="currentPage3"
-	      :page-size="100"
+	      @current-change="changePage"
+	      :page-size="pageSize"
 	      layout="total, prev, pager, next, jumper"
 	      :total="questions.length">
 	    </el-pagination>
@@ -36,7 +34,7 @@
 
 <script>
 	import axios from 'axios'
-	
+
 	export default{
 		data(){
 			return{
@@ -44,6 +42,7 @@
 				questions:[],
 				groupedQuestions:[],
 				currentQuestions:[],
+				pageSize:10,
 			}
 		},
 		mounted(){
@@ -55,8 +54,15 @@
 					let res = response.data;
 					if (res.status === 0) {
 						this.questions = res.result;
+						for(var i=0,len=this.questions.length;i<len;i+=this.pageSize){
+			        this.groupedQuestions.push(this.questions.slice(i,i+this.pageSize));
+			      }
+			      this.currentQuestions = this.groupedQuestions[0]
 					}
 				})
+			},
+			changePage(val){
+				this.currentQuestions = this.groupedQuestions[''+(val-1)+''];
 			}
 		}
 	}
