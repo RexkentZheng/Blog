@@ -1,32 +1,65 @@
 <template>
 	<div class="personal">
-		<el-menu class="el-menu-demo" mode="horizontal" @select="init()">
-			<el-submenu index="1">
-		    <template slot="title">文章操作</template>
-		    <el-menu-item index="1-1">
-		    <router-link to='/personalInfo/articleCreate'>新建文章</router-link>
-		  	</el-menu-item>
-		    <el-menu-item index="1-2">
-		    <router-link to='/personalInfo/articleMine'>我的文章</router-link>
-		  	</el-menu-item>
-		  </el-submenu>
-		  <el-submenu index="2">
-		    <template slot="title">问答操作</template>
-		    <el-menu-item index="2-1">
-		    <router-link to='/personalInfo/questionCreate'>新建问答</router-link>
-			  </el-menu-item>
-		    <el-menu-item index="2-2">
-		    <router-link to='/personalInfo/questionMine'>我的问答</router-link>
-		  	</el-menu-item>
-		  </el-submenu>
-		  <el-menu-item index="4">个人设置</el-menu-item>
-		</el-menu>
-		<article-create  v-if="pathName === 'articleCreate'"></article-create>
-		<article-mine v-if="pathName === 'articleMine'"></article-mine>
-		<article-edit v-if="pathName === 'articleEdit'"></article-edit>
-		<question-create v-if="pathName === 'questionCreate'"></question-create>
-		<question-mine v-if="pathName === 'questionMine'"></question-mine>
-		<question-edit v-if="pathName === 'questionEdit'"></question-edit>
+		<el-row>
+			<el-col :span="7">
+		    <el-menu>
+		    	<router-link to='/home'>
+			    	<el-menu-item index="1">
+			        <i class="el-icon-location"></i>
+			        <span slot="title">回到首页</span>
+			      </el-menu-item>
+		    	</router-link>
+		      <el-submenu v-if="this.getCookies('userType') === '1'" index="2">
+		        <template slot="title">
+		          <i class="el-icon-document"></i>
+		          <span>文章部分</span>
+		        </template>
+		        <router-link to='/personalInfo/articleCreate'>
+		          <el-menu-item index="2-1">
+			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        	新建文章
+		        	</el-menu-item>
+	        	</router-link>
+	        	<router-link to='/personalInfo/articleMine'>
+		        	<el-menu-item index="2-2">
+			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        	我的文章
+		        	</el-menu-item>
+	        	</router-link>
+		      </el-submenu>
+		      <el-submenu index="3">
+		        <template slot="title">
+		          <i class="el-icon-question"></i>
+		          <span>问答部分</span>
+		        </template>
+		        <router-link to='/personalInfo/questionCreate'>
+		          <el-menu-item index="3-1">
+			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        	新建问答
+		        	</el-menu-item>
+	        	</router-link>
+	        	<router-link to='/personalInfo/questionMine'>
+		        	<el-menu-item index="3-2">
+			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        	我的问答
+		        	</el-menu-item>
+	        	</router-link>
+		      </el-submenu>
+		      <el-menu-item index="4">
+		        <i class="el-icon-setting"></i>
+		        <span slot="title">个人设置</span>
+		      </el-menu-item>
+		    </el-menu>
+		  </el-col>
+		  <el-col :span="13" :offset="1">
+		  	<article-create  v-if="pathName === 'articleCreate'"></article-create>
+				<article-mine v-if="pathName === 'articleMine'"></article-mine>
+				<article-edit v-if="pathName === 'articleEdit'"></article-edit>
+				<question-create v-if="pathName === 'questionCreate'"></question-create>
+				<question-mine v-if="pathName === 'questionMine'"></question-mine>
+				<question-edit v-if="pathName === 'questionEdit'"></question-edit>
+		  </el-col>
+		</el-row>
 	</div>
 </template>
 

@@ -25,7 +25,7 @@ function getRight(res, doc) {
 
 //创建文章
 router.post('/create',(req,res,next)=>{
-  let { author, title, content } = req.body;
+  let { author, title, introduce, content } = req.body;
   Question.findOne({}).sort({
     questionId: -1,
   }).limit(1).exec((err, doc) => {
@@ -36,16 +36,11 @@ router.post('/create',(req,res,next)=>{
         'questionId':questionId,
         'questionAuthor':author,
         'questionTitle':title,
+        'questionIntroduce':introduce,
         'questionContent':content,
         'questionCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
         'like':[],
-        'questionAnswers':[
-          {
-            'answerCreatorName':'String',
-            'answerContent':'String',
-            'answerCreatedTime':'String'
-          }
-        ]
+        'questionAnswers':[]
       },(err,doc)=>{
         if (err) {
           getWrong(res, err);
@@ -59,6 +54,7 @@ router.post('/create',(req,res,next)=>{
         'questionId':questionId,
         'questionAuthor':author,
         'questionTitle':title,
+        'questionIntroduce':introduce,
         'questionContent':content,
         'questionCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
         'like':[],
@@ -104,11 +100,12 @@ router.post('/details',(req,res,next)=>{
 
 //修改问答
 router.post('/update',(req,res,next)=>{
-  let { _id, questionTitle, questionContent } = req.body;
+  let { _id, questionTitle, questionIntroduce, questionContent } = req.body;
   Question.update({
     _id
   },{
     'questionTitle':questionTitle,
+    'questionIntroduce':questionIntroduce,
     'questionContent':questionContent,
   },(err,doc)=>{
     if (err) {

@@ -164,7 +164,9 @@
 					let res = response.data;
 					if (res.status == 0) {
 						this.nickName = '';
-						this.$router.go(0);
+						this.$router.push({
+							path:'/home'
+						})
 					}
 				})
 			},

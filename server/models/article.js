@@ -6,6 +6,7 @@ const articleSchema = new Schema({
 	'articleId':Number,
 	'articleAuthor':String,
 	'articleTitle':String,
+	'articleIntroduce':String,
 	'articleContent':String,
 	'articleCreatedTime':String,
 	'like':[],

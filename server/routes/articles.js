@@ -25,7 +25,7 @@ function getRight(res, doc) {
 
 //创建文章
 router.post('/create',(req,res,next)=>{
-  let { author, title, content } = req.body;
+  let { author, title, introduce, content } = req.body;
   Article.findOne({}).sort({
     articleId: -1,
   }).limit(1).exec((err, doc) => {
@@ -36,16 +36,11 @@ router.post('/create',(req,res,next)=>{
         'articleId':articleId,
         'articleAuthor':author,
         'articleTitle':title,
+        'articleIntroduce':introduce,
         'articleContent':content,
         'articleCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
         'like':[],
-        'comments':[
-          {
-            'commentUserName':'String',
-            'commentContent':'String',
-            'commentTime':'String'
-          }
-        ]
+        'comments':[]
       },(err,doc)=>{
         if (err) {
           getWrong(res, err);
@@ -59,16 +54,11 @@ router.post('/create',(req,res,next)=>{
         'articleId':articleId,
         'articleAuthor':author,
         'articleTitle':title,
+        'articleIntroduce':introduce,
         'articleContent':content,
         'articleCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
         'like':[],
-        'comments':[
-          {
-            'commentUserName':'String',
-            'commentContent':'String',
-            'commentTime':'String'
-          }
-        ]
+        'comments':[]
       },(err,doc)=>{
         if (err) {
           getWrong(res, err);
@@ -111,10 +101,11 @@ router.post('/details',(req,res,next)=>{
 
 //修改文章
 router.post('/update',(req,res,next)=>{
-  let { _id, articleTitle, articleContent } = req.body;
+  let { _id, articleTitle, articleIntroduce, articleContent } = req.body;
   Article.update({
     _id
   },{
+    'articleIntroduce':articleIntroduce,
     'articleTitle':articleTitle,
     'articleContent':articleContent,
   },(err,doc)=>{

@@ -37,7 +37,7 @@
 						/ {{question.questionCreatedTime}} / 赞：{{question.like.length}}</p>
 						</li>
 						<li class="clearfix">
-							<p>假装这里有个问答简介</p>
+							<p>{{question.questionIntroduce}}</p>
 						</li>
 					</ul>
 				</li>

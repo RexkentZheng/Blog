@@ -8,6 +8,9 @@
 				<p class="article-created-time">{{article.articleCreatedTime}}</p>
 				<p class="article-author">{{article.articleAuthor}}</p>
 			</li>
+			<li class="clearfix">
+				<p>{{article.articleIntroduce}}</p>
+			</li>
 			<li>
  				<div class="article-content" v-html='article.articleContent'></div>
 			</li>

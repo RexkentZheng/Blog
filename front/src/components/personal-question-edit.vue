@@ -1,6 +1,12 @@
 <template>
 	<div class="question-create">
 		<el-input v-model="title" placeholder="请输入文章标题"></el-input>
+		<el-input
+		  type="textarea"
+		  :rows="3"
+		  placeholder="请输入文章简介"
+		  v-model="introduce">
+		</el-input>
 		<div id="editor" style="text-align:left">
 			<div v-html='editorContent'></div>
 		</div>
@@ -16,6 +22,7 @@
 		data(){
 			return{
 				title:'',
+				introduce:'',
 				editorContent: '',
 			}
 		},
@@ -73,6 +80,7 @@
 					let res = response.data;
 					if (res.status === 0) {
 						this.editorContent = res.result.questionContent;
+						this.introduce = res.result.questionIntroduce;
 						this.title = res.result.questionTitle;
 					}
 				})
@@ -81,7 +89,8 @@
 			saveQuestion () {
         axios.post('/questions/update',{
         	_id:this.$route.query.questionId,
-        	questionTitle:this.title,
+        	questionIntroduce:this.introduce,
+         	questionTitle:this.title,
           questionContent:this.editorContent
         }).then((response)=>{
           let res = response.data;

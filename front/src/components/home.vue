@@ -46,7 +46,7 @@
 						<p>{{article.articleAuthor}}/{{article.articleCreatedTime}}</p>
 					</li>
 					<li class="article-showcut">
-						<p>这一哥什么都没有的文章这一哥什么都没有的文章</p>
+						<p>{{article.articleIntroduce}}</p>
 					</li>
 				</ul>
 			</div>
@@ -65,7 +65,7 @@
 						<p>{{question.questionAuthor}}/{{question.questionCreatedTime}}</p>
 					</li>
 					<li class="question-showcut">
-						<p>这一哥什么都没有的文章</p>
+						<p>{{question.questionIntroduce}}</p>
 					</li>
 				</ul>
 			</div>

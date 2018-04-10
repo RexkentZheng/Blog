@@ -2,7 +2,7 @@
   <div id="app">
     <common-login></common-login>
     <el-container>
-      <el-header>
+      <el-header v-if="this.$route.path.split('/')[1] !== 'personalInfo'">
         <el-row :gutter="20">
           <el-col :span="14" :offset ='5'>
             <div class="nav-wrapper">

@@ -38,7 +38,7 @@
 						/ {{article.articleCreatedTime}} / 赞：{{article.like.length}}</p>
 						</li>
 						<li class="clearfix">
-							<p>假装这里有个文章简介</p>
+							<p>{{article.articleIntroduce}}</p>
 						</li>
 					</ul>
 				</li>

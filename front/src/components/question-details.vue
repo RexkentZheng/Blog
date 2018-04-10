@@ -9,6 +9,11 @@
 				<p class="question-author">{{question.questionAuthor}}</p>
 			</li>
 			<li>
+				<p>
+					{{question.questionIntroduce}}
+				</p>
+			</li>
+			<li>
  				<div class="question-content" v-html='question.questionContent'></div>
 			</li>
 			<li class="support clearfix">

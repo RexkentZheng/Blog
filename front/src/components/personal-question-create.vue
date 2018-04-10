@@ -1,9 +1,15 @@
 <template>
 	<div class="question-create">
 		<el-input v-model="title" placeholder="请输入问答标题"></el-input>
+		<el-input
+		  type="textarea"
+		  :rows="3"
+		  placeholder="请输入问答简介"
+		  v-model="introduce">
+		</el-input>
 		<div id="editor" style="text-align:left"></div>
 		<el-button @click='saveQuestion()' type="primary" plain >确定</el-button>
-		<el-button plain >取消</el-button>
+		<el-button @click='cancel()' plain >取消</el-button>
 	</div>
 </template>
 <script>
@@ -14,6 +20,7 @@
 		data(){
 			return{
 				title:'',
+				introduce:'',
 				editorContent: '',
         longText:''
 			}
@@ -63,6 +70,7 @@
         axios.post('/questions/create',{
         	author:this.getCookies('userName'),
         	title:this.title,
+        	introduce:this.introduce,
           content:this.editorContent
         }).then((response)=>{
           let res = response.data;
@@ -74,6 +82,11 @@
     				this.$router.go(0)
           }
         })
+      },
+      cancel(){
+      	this.$router.push({
+      		path:'/personalInfo'
+      	})
       }
 		}
 	}

@@ -6,6 +6,7 @@ const questionSchema = new Schema({
 	'questionId':Number,
 	'questionAuthor':String,
 	'questionTitle':String,
+	'questionIntroduce':String,
 	'questionContent':String,
 	'questionCreatedTime':String,
 	'like':[],
