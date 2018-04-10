@@ -1,7 +1,8 @@
 { 
     "_id" : ObjectId("5ac898666bc5992360ac3dd3"), 
     "like" : [
-        "admin"
+        "admin", 
+        "B"
     ], 
     "articleId" : 201804070210000.0, 
     "articleAuthor" : "A", 
@@ -10,10 +11,24 @@
     "articleCreatedTime" : "2018-04-07 18:07", 
     "comments" : [
         {
-            "_id" : ObjectId("5ac898666bc5992360ac3dd4"), 
-            "commentUserName" : "String", 
-            "commentContent" : "String", 
-            "commentTime" : "String"
+            "_id" : ObjectId("5acae105bd905204b3dcb12f"), 
+            "commentUserName" : "B", 
+            "commentContent" : "111", 
+            "commentCreatedTime" : "2018-04-09 11:41", 
+            "commentChildren" : [
+                {
+                    "_id" : ObjectId("5acae475b699b0050495722f"), 
+                    "commentUserName" : "B", 
+                    "commentContent" : "222", 
+                    "commentCreatedTime" : "2018-04-09 11:56"
+                }, 
+                {
+                    "_id" : ObjectId("5acae5d6b699b00504957230"), 
+                    "commentUserName" : "B", 
+                    "commentContent" : "666", 
+                    "commentCreatedTime" : "2018-04-09 12:02"
+                }
+            ]
         }
     ], 
     "__v" : NumberInt(0)

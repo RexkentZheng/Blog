@@ -253,4 +253,41 @@ router.post('/reply',(req,res,next)=>{
     }
   })
 })
+
+//搜索文章
+router.post('/search',(req,res,next)=>{
+  const { keyWords } = req.body;
+  console.log(keyWords);
+  const reg = new RegExp(keyWords, 'i')
+  Article.find({
+    $or:[{
+      articleAuthor:{
+        $regex:reg,
+      }
+    },{
+      articleTitle:{
+        $regex:reg,
+      }
+    }]
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//获取最新文章
+router.post('/new',(req,res,next)=>{
+  Article.find({}).sort({
+    articleId: -1,
+  }).limit(6).exec((err, doc) => {
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
 module.exports = router;

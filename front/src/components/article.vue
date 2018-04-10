@@ -1,8 +1,23 @@
 <template>
 	<div class="article">
 		<div class="search-part clearfix">
-			<el-input size="mini" v-model="keyWrods" placeholder="请输入内容"></el-input>
-			<el-button size="mini" type="primary" icon="el-icon-search">搜索</el-button>
+			<el-autocomplete
+				size='small'
+			  v-model="keyWords"
+			  :fetch-suggestions="querySearch"
+			  placeholder="请输入内容"
+			  @select="handleSelect">
+			  <i
+			    class="el-icon-search el-input__icon"
+			    size='small'
+			    slot="suffix"
+			    @click="search()">
+			  </i>
+			  <template slot-scope="props">
+			    <div class="title">{{ props.item.articleTitle }}</div>
+			    <span class="author">作者：{{ props.item.articleAuthor }}</span>
+			  </template>
+			</el-autocomplete>
 		</div>
 		<div class="list-part">
 			<ul>
@@ -16,8 +31,14 @@
 							</p>
 						</li>
 						<li class="clearfix">
-							<p>{{article.articleCreatedTime}}</p>
-							<p>{{article.articleAuthor}}</p>
+							<p>
+							<router-link :to="{path:'/article/details',query:{_id:article._id}}">
+									{{article.articleAuthor}}&nbsp
+								</router-link>
+						/ {{article.articleCreatedTime}} / 赞：{{article.like.length}}</p>
+						</li>
+						<li class="clearfix">
+							<p>假装这里有个文章简介</p>
 						</li>
 					</ul>
 				</li>
@@ -38,7 +59,7 @@
 	export default{
 		data(){
 			return{
-				keyWrods:'',
+				keyWords:'',
 				articles:[],
 				groupedArticles:[],
 				currentArticles:[],
@@ -54,15 +75,45 @@
 					let res = response.data;
 					if (res.status === 0) {
 						this.articles = res.result;
-						for(var i=0,len=this.articles.length;i<len;i+=this.pageSize){
-			        this.groupedArticles.push(this.articles.slice(i,i+this.pageSize));
-			      }
-			      this.currentArticles = this.groupedArticles[0]
+						this.sortArticles(this.articles);
 					}
 				})
 			},
+			sortArticles(articles){
+				this.currentArticles = [];
+				this.groupedArticles = [];
+				for(let i=0,len=articles.length;i<len;i+=this.pageSize){
+	        this.groupedArticles.push(articles.slice(i,i+this.pageSize));
+	      }
+	      this.currentArticles = this.groupedArticles[0]
+			},
 			changePage(val){
 				this.currentArticles = this.groupedArticles[''+(val-1)+''];
+			},
+			querySearch(queryString, cb){
+				let articles = this.articles;
+        let results = queryString ? articles.filter(this.createFilter(queryString)) : articles;
+        cb(results);
+			},
+			createFilter(queryString) {
+        return (article) => {
+          return (article.articleTitle.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+        };
+      },
+      handleSelect(item) {
+        this.keyWords = item.articleTitle;
+        this.search();
+      },
+			search(){
+				axios.post('/articles/search',{
+					keyWords:this.keyWords
+				}).then((response)=>{
+					let res = response.data;
+					if (res.status === 0) {
+						this.articles = res.result;
+						this.sortArticles(this.articles);
+					} else {}
+				})
 			}
 		}
 	}

@@ -28,6 +28,19 @@ a:hover {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+/*搜索框自带建议部分*/
+.el-autocomplete-suggestion .title{
+
+}
+.el-autocomplete-suggestion .author{
+	line-height: 20px;
+	color: gray;
+	font-size: 13px;
+	float: right;
+	margin-top: -10px;
+	margin-bottom: 5px;
+}
 /*登录组件*/
 .header-login{
 	margin-bottom: 0!important;
@@ -68,7 +81,7 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(104, 179, 200, 0.65);
-	z-index: 1;
+	z-index: 10002;
 }
 
 .login-part {
@@ -166,7 +179,7 @@ a:hover {
 .nav-main{
 	width: 400px;
 	display: block;
-	margin: 0 auto;	
+	margin: 0 auto;
 }
 .nav-wrapper .nav-main li{
 	float: left;
@@ -191,10 +204,103 @@ a:hover {
 	border-bottom: 2px solid #68B3C8;
 	color: #000000;
 }
+/*页脚部分*/
+.footer .wraper .inner-wraper {
+	padding-top: 12px;
+	float: right;
+	height: 14px;
+	line-height: 14px;
+	white-space: nowrap;
+}
 
+.footer .wraper a {
+	height: 200px;
+}
+
+.footer .wraper .copyright {
+	clear: both;
+	height: 12px;
+	margin: 0 auto;
+	padding-top: 15px;
+	padding-bottom: 30px;
+	color: #d5d5d5;
+	font-size: 12px;
+	line-height: 12px;
+	text-align: center;
+}
+
+.footer .wraper .copyright a {
+	padding-right: 0;
+	font-size: 12px;
+	color: #d5d5d5;
+}
+/*首页部分*/
+.home{
+	width: 550px;
+	margin: 0 auto;
+}
+.home .main-introduce .main-wrapper {
+	margin-bottom: 15px;
+}
+.home .main-introduce .main-wrapper .img-wrapper{
+	float: left;
+	width: 230px;
+}
+.home .main-introduce .main-wrapper .img-wrapper img{
+	float: left;
+	width: 230px;
+	height: 120px;
+	border-radius: 10px;
+}
+.home .main-introduce .main-wrapper ul{
+	float: left;
+	width: 250px;
+	margin-left: 10px;
+	margin-top: 15px;
+}
+.home .main-introduce .main-wrapper .title{
+	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+}
+.home .main-introduce .main-wrapper .title a{
+	color: #409EFF;
+}
+.home .main-introduce .main-wrapper .text
+{
+	text-align: left;
+}
+.home .new-articles h3{
+	float: left;
+}
+.home .new-articles .one-article ul{
+	width:400px;
+	float: left;
+	margin: 0 0 15px 10px;
+}
+.home .new-articles .one-article ul li{
+	text-align: left;
+}
+.home .new-articles .one-article ul .article-title a{
+	color: #409EFF;
+}
+.home .new-questions h3{
+	float: left;
+}
+.home .new-questions .one-question ul{
+	width:400px;
+	float: left;
+	margin: 0 0 15px 10px;
+}
+.home .new-questions .one-question ul li{
+	text-align: left;
+}
+.home .new-questions .one-question ul .question-title a{
+	color: #409EFF;
+}
 /*文章列表页*/
 .article {
-	width: 550px;
+	width: 500px;
 	margin: 0 auto;
 }
 .article .search-part{
@@ -209,7 +315,7 @@ a:hover {
 	float: left;
 }
 .article .list-part .one-piece{
-
+	margin: 20px 0;
 }
 .article .list-part .one-piece p{
 	margin: 10px 0 0 0 ;
@@ -217,27 +323,29 @@ a:hover {
 .article .list-part .one-piece li:nth-child(1){
 }
 .article .list-part .one-piece li:nth-child(1) p{
+	font-weight: bold;
+	font-size: 18px;
 	float: left;
 	color: #409EFF;
 }
-.article .list-part .one-piece li:nth-child(1) p a{
+.article .list-part .one-piece li p a{
 	color: #409EFF;
 }
-.article .list-part .one-piece li:nth-child(2) p:nth-child(1){
+.article .list-part .one-piece li:nth-child(2) p{
 	float: left;
 	font-size: 13px;
 	color: gray;
 }
-.article .list-part .one-piece li:nth-child(2) p:nth-child(2){
-	float: right;
+.article .list-part .one-piece li:nth-child(3) p{
+	float: left;
 }
 .article .list-part .el-pagination{
-	margin-top: 15px;
+	margin-top: 40px;
 }
 
 /*问答列表页*/
 .question {
-	width: 550px;
+	width: 500px;
 	margin: 0 auto;
 }
 .question .search-part{
@@ -252,7 +360,7 @@ a:hover {
 	float: left;
 }
 .question .list-part .one-piece{
-
+	margin: 20px 0;
 }
 .question .list-part .one-piece p{
 	margin: 10px 0 0 0 ;
@@ -260,21 +368,24 @@ a:hover {
 .question .list-part .one-piece li:nth-child(1){
 }
 .question .list-part .one-piece li:nth-child(1) p{
+	font-weight: bold;
+	font-size: 18px;
 	float: left;
-}
-.question .list-part .one-piece li:nth-child(1) p a{
 	color: #409EFF;
 }
-.question .list-part .one-piece li:nth-child(2) p:nth-child(1){
+.question .list-part .one-piece li p a{
+	color: #409EFF;
+}
+.question .list-part .one-piece li:nth-child(2) p{
 	float: left;
 	font-size: 13px;
 	color: gray;
 }
-.question .list-part .one-piece li:nth-child(2) p:nth-child(2){
-	float: right;
+.question .list-part .one-piece li:nth-child(3) p{
+	float: left;
 }
 .question .list-part .el-pagination{
-	margin-top: 15px;
+	margin-top: 40px;
 }
 
 /*留言板*/

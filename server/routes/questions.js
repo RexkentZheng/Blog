@@ -184,7 +184,7 @@ router.post('/unSupport',(req,res,next)=>{
 //回答问答
 router.post('/answer',(req,res,next)=>{
   let { _id, answerAuthor, answerContent } = req.body;
-  console.log(answerAuthor)
+  console.log(req.body)
   Question.update({
     _id
   },{
@@ -240,6 +240,43 @@ router.post('/reply',(req,res,next)=>{
       },
     },
   },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//搜索问答
+router.post('/search',(req,res,next)=>{
+  const { keyWords } = req.body;
+  console.log(keyWords);
+  const reg = new RegExp(keyWords, 'i')
+  Question.find({
+    $or:[{
+      questionAuthor:{
+        $regex:reg,
+      }
+    },{
+      questionTitle:{
+        $regex:reg,
+      }
+    }]
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//获取最新问答
+router.post('/new',(req,res,next)=>{
+  Question.find({}).sort({
+    questionId: -1,
+  }).limit(6).exec((err, doc) => {
     if (err) {
       getWrong(res,err);
     } else {

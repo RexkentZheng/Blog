@@ -109,6 +109,9 @@
 					let res = response.data;
 					if (res.status === 0) {
 						this.question = res.result;
+						if (this.question.like.indexOf(this.getCookies('userName')) >= 0) {
+							this.supportFlag = true;
+						}
 					}
 				})
 			},
@@ -171,19 +174,23 @@
 				})
 			},
 			answer(){
-				axios.post('/questions/answer',{
-					_id:this.question._id,
-					answerAuthor:this.getCookies('userName'),
-					answerContent:this.Answer,
-				}).then((response)=>{
-					let res = response.data;
-					if (res.status === 0) {
-						alert('回答成功');
-						this.$router.go(0);
-					} else {
-						alert('回答失败')
-					}
-				})
+				if (this.getCookies('userName') === '') {
+					alert('请先登录后再回答')
+				} else {
+					axios.post('/questions/answer',{
+						_id:this.question._id,
+						answerAuthor:this.getCookies('userName'),
+						answerContent:this.Answer,
+					}).then((response)=>{
+						let res = response.data;
+						if (res.status === 0) {
+							alert('回答成功');
+							this.$router.go(0);
+						} else {
+							alert('回答失败')
+						}
+					})
+				}
 			},
 			showEditor(){
 				this.answerFlag = !this.answerFlag;

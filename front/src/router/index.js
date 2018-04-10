@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import home from './../components/home';
 import article from "./../components/article";
 import articleDetails from './../components/article-details'
 import question from "./../components/question";
@@ -12,9 +13,12 @@ Vue.use(Router)
 
 export default new Router({
 	routes: [{
-		path: '/',
-		name: 'article',
-		component: article
+    path: '/',
+   redirect: '/home'
+   },{
+		path: '/home',
+		name: 'home',
+		component: home
 	}, {
 		path: "/article",
 		name: 'article',

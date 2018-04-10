@@ -10,10 +10,18 @@
     "questionCreatedTime" : "2018-04-08 14:05", 
     "questionAnswers" : [
         {
-            "_id" : ObjectId("5ac9b117a9f2fb1654462d97"), 
-            "answerCreatorName" : "String", 
-            "answerContent" : "String", 
-            "answerCreatedTime" : "String"
+            "_id" : ObjectId("5acc2b531317ca03fd0bf7ab"), 
+            "answerAuthor" : "B", 
+            "answerContent" : "<p>真的就是这么简单</p>", 
+            "answerCreatedTime" : "2018-04-10 11:11", 
+            "answerChildren" : [
+                {
+                    "_id" : ObjectId("5acc2b5d1317ca03fd0bf7ac"), 
+                    "commentUserName" : "B", 
+                    "commentContent" : "老铁666", 
+                    "commentCreatedTime" : "2018-04-10 11:11"
+                }
+            ]
         }
     ], 
     "__v" : NumberInt(0)

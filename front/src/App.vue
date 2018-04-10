@@ -8,13 +8,13 @@
             <div class="nav-wrapper">
               <ul class="nav-main clearfix">
                 <li>
+                  <router-link to="/home">首页</router-link>
+                </li>
+                <li>
                   <router-link to="/article">文章</router-link>
                 </li>
                 <li>
                   <router-link to="/question">问答</router-link>
-                </li>
-                <li>
-                  <router-link to="/personalInfo">个人</router-link>
                 </li>
                 <li>
                   <router-link to="/messageBord">留言板</router-link>
@@ -27,7 +27,9 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer></el-footer>
+      <el-footer>
+        <common-footer></common-footer>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -37,6 +39,7 @@ import './assets/style/clear.css'
 import './assets/style/style.css'
 
 import CommonLogin from './components/login'
+import CommonFooter from './components/footer'
 
 export default {
   name: 'App',
@@ -45,7 +48,8 @@ export default {
     }
   },
   components:{
-    CommonLogin
+    CommonLogin,
+    CommonFooter
   },
 }
 </script>
