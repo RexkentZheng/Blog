@@ -10,7 +10,7 @@
 						<p class="title">{{question.questionTitle}}</p>
 					</li>
 					<li class="clearfix">
-						<p class="created-time">{{question.questionCreatedTime}}</p>
+						<p class="created-time">{{question.questionFirstTag}}/{{question.questionSecondTag}}/{{question.questionCreatedTime}}</p>
 						<p class="edit">
 							<a href="javascript:;" @click='reload(question._id)'>点击编辑</a>
 						</p>

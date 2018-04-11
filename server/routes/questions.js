@@ -25,7 +25,7 @@ function getRight(res, doc) {
 
 //创建问答
 router.post('/create',(req,res,next)=>{
-  let { author, title, introduce, content } = req.body;
+  let { author, title, introduce, content, questionFirstTag, questionSecondTag } = req.body;
   Question.findOne({}).sort({
     questionId: -1,
   }).limit(1).exec((err, doc) => {
@@ -36,6 +36,8 @@ router.post('/create',(req,res,next)=>{
         'questionId':questionId,
         'questionAuthor':author,
         'questionTitle':title,
+        'questionFirstTag':questionFirstTag,
+        'questionSecondTag':questionSecondTag,
         'questionIntroduce':introduce,
         'questionContent':content,
         'questionCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
@@ -54,6 +56,8 @@ router.post('/create',(req,res,next)=>{
         'questionId':questionId,
         'questionAuthor':author,
         'questionTitle':title,
+        'questionFirstTag':questionFirstTag,
+        'questionSecondTag':questionSecondTag,
         'questionIntroduce':introduce,
         'questionContent':content,
         'questionCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
@@ -100,13 +104,15 @@ router.post('/details',(req,res,next)=>{
 
 //修改问答
 router.post('/update',(req,res,next)=>{
-  let { _id, questionTitle, questionIntroduce, questionContent } = req.body;
+  let { _id, questionTitle, questionIntroduce, questionContent, questionFirstTag, questionSecondTag } = req.body;
   Question.update({
     _id
   },{
-    'questionTitle':questionTitle,
-    'questionIntroduce':questionIntroduce,
-    'questionContent':questionContent,
+    questionTitle,
+    questionIntroduce,
+    questionContent,
+    questionFirstTag,
+    questionSecondTag
   },(err,doc)=>{
     if (err) {
       getWrong(res,err);
@@ -257,6 +263,14 @@ router.post('/search',(req,res,next)=>{
       }
     },{
       questionTitle:{
+        $regex:reg,
+      }
+    },{
+      questionFirstTag:{
+        $regex:reg,
+      }
+    },{
+      questionSecondTag:{
         $regex:reg,
       }
     }]

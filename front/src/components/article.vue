@@ -35,7 +35,7 @@
 							<router-link :to="{path:'/article/details',query:{_id:article._id}}">
 									{{article.articleAuthor}}&nbsp
 								</router-link>
-						/ {{article.articleCreatedTime}} / 赞：{{article.like.length}}</p>
+						/ {{article.articleFirstTag}} / {{article.articleSecondTag}} / {{article.articleCreatedTime}} / 赞：{{article.like.length}}</p>
 						</li>
 						<li class="clearfix">
 							<p>{{article.articleIntroduce}}</p>

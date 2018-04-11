@@ -1,6 +1,22 @@
 <template>
 	<div class="question-create">
 		<el-input v-model="title" placeholder="请输入问答标题"></el-input>
+		<el-select v-model="firstTag" @change='getSecondTags' placeholder="请选择一级标题">
+	    <el-option
+	      v-for="tag in tags"
+	      :key="tag.tagName"
+	      :label="tag.tagName"
+	      :value="tag.tagName">
+	    </el-option>
+	  </el-select>
+	  <el-select v-model="secondTag" placeholder="清选择二级标题">
+	    <el-option
+	      v-for="secondTag in secondTags"
+	      :key="secondTag"
+	      :label="secondTag"
+	      :value="secondTag">
+	    </el-option>
+	  </el-select>
 		<el-input
 		  type="textarea"
 		  :rows="3"
@@ -22,7 +38,10 @@
 				title:'',
 				introduce:'',
 				editorContent: '',
-        longText:''
+				tags:[],
+				firstTag:'',
+				secondTag:'',
+				secondTags:[],
 			}
 		},
 		mounted(){
@@ -54,6 +73,12 @@
     		]
         editor.customConfig.uploadImgShowBase64 = true
         editor.create()
+        axios.post('/confs/question/tags').then((response)=>{
+					let res = response.data;
+					if (res.status === 0) {
+						this.tags = res.result;
+					}
+				})
 			},
 			//查找cookie的方法
 			getCookies(cname) {
@@ -66,12 +91,21 @@
 				}
 				return "";
 			},
+			getSecondTags(val){
+				this.tags.forEach((tag)=>{
+					if (tag.tagName === val) {
+						this.secondTags = tag.tagChild
+					}
+				})
+			},
 			saveQuestion:function () {
         axios.post('/questions/create',{
         	author:this.getCookies('userName'),
         	title:this.title,
         	introduce:this.introduce,
-          content:this.editorContent
+          content:this.editorContent,
+          questionFirstTag:this.firstTag,
+          questionSecondTag:this.secondTag,
         }).then((response)=>{
           let res = response.data;
           if (res.status === 0) {

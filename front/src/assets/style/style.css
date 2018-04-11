@@ -478,6 +478,10 @@ a:hover {
 .article-create .el-textarea{
 	margin-bottom: 10px;
 }
+.article-create .el-select{
+	width: 260px;
+	margin: 0 5px;
+}
 .article-create #editor{
 	margin-bottom: 15px;
 	z-index: -1;
@@ -543,6 +547,13 @@ a:hover {
 	font-size: 14px;
 	margin-left: 20px;
 	text-align: left;
+}
+.article-details > ul > li:nth-child(3) p:nth-child(1){
+	float: left;
+}
+.article-details > ul > li:nth-child(3) p:nth-child(2){
+	float: right;
+	margin-right: 20px;
 }
 .article-details > ul > li:nth-child(4){
 	width: 650px;
@@ -670,6 +681,10 @@ a:hover {
 .question-create .el-textarea{
 	margin-bottom: 10px;
 }
+.question-create .el-select{
+	width: 260px;
+	margin: 0 5px;
+}
 .question-create #editor{
 	margin-bottom: 15px;
 	z-index: -1;
@@ -737,6 +752,13 @@ a:hover {
 	font-size: 14px;
 	margin-left: 20px;
 	text-align: left;
+}
+.question-details > ul > li:nth-child(3) p:nth-child(1){
+	float: left;
+}
+.question-details > ul > li:nth-child(3) p:nth-child(2){
+	float: right;
+	margin-right: 20px;
 }
 .question-details > ul > li:nth-child(4){
 	width: 650px;

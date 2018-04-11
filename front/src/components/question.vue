@@ -34,7 +34,7 @@
 							<p><router-link :to="{path:'/question/details',query:{_id:question._id}}">
 									{{question.questionAuthor}}&nbsp
 								</router-link>
-						/ {{question.questionCreatedTime}} / 赞：{{question.like.length}}</p>
+						/ {{question.questionFirstTag}} / {{question.questionSecondTag}} / {{question.questionCreatedTime}} / 赞：{{question.like.length}}</p>
 						</li>
 						<li class="clearfix">
 							<p>{{question.questionIntroduce}}</p>

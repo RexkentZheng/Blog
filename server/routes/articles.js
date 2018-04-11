@@ -25,7 +25,7 @@ function getRight(res, doc) {
 
 //创建文章
 router.post('/create',(req,res,next)=>{
-  let { author, title, introduce, content } = req.body;
+  let { author, title, introduce, content, articleFirstTag, articleSecondTag} = req.body;
   Article.findOne({}).sort({
     articleId: -1,
   }).limit(1).exec((err, doc) => {
@@ -36,6 +36,8 @@ router.post('/create',(req,res,next)=>{
         'articleId':articleId,
         'articleAuthor':author,
         'articleTitle':title,
+        'articleFirstTag':articleFirstTag,
+        'articleSecondTag':articleSecondTag,
         'articleIntroduce':introduce,
         'articleContent':content,
         'articleCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
@@ -54,6 +56,8 @@ router.post('/create',(req,res,next)=>{
         'articleId':articleId,
         'articleAuthor':author,
         'articleTitle':title,
+        'articleFirstTag':articleFirstTag,
+        'articleSecondTag':articleSecondTag,
         'articleIntroduce':introduce,
         'articleContent':content,
         'articleCreatedTime': new Date().Format('yyyy-MM-dd hh:mm'),
@@ -101,13 +105,15 @@ router.post('/details',(req,res,next)=>{
 
 //修改文章
 router.post('/update',(req,res,next)=>{
-  let { _id, articleTitle, articleIntroduce, articleContent } = req.body;
+  let { _id, articleTitle, articleIntroduce, articleContent, articleSecondTag, articleFirstTag } = req.body;
   Article.update({
     _id
   },{
-    'articleIntroduce':articleIntroduce,
-    'articleTitle':articleTitle,
-    'articleContent':articleContent,
+    articleTitle,
+    articleIntroduce,
+    articleContent,
+    articleFirstTag,
+    articleSecondTag
   },(err,doc)=>{
     if (err) {
       getWrong(res,err);
@@ -257,6 +263,14 @@ router.post('/search',(req,res,next)=>{
       }
     },{
       articleTitle:{
+        $regex:reg,
+      }
+    },{
+      articleFirstTag:{
+        $regex:reg,
+      }
+    },{
+      articleSecondTag:{
         $regex:reg,
       }
     }]

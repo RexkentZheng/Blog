@@ -1,6 +1,22 @@
 <template>
 	<div class="article-create">
 		<el-input v-model="title" placeholder="请输入文章标题"></el-input>
+		<el-select v-model="firstTag" @change='getSecondTags' placeholder="请选择一级标题">
+	    <el-option
+	      v-for="tag in tags"
+	      :key="tag.tagName"
+	      :label="tag.tagName"
+	      :value="tag.tagName">
+	    </el-option>
+	  </el-select>
+	  <el-select v-model="secondTag" placeholder="清选择二级标题">
+	    <el-option
+	      v-for="secondTag in secondTags"
+	      :key="secondTag"
+	      :label="secondTag"
+	      :value="secondTag">
+	    </el-option>
+	  </el-select>
 		<el-input
 		  type="textarea"
 		  :rows="3"
@@ -24,7 +40,13 @@
 				title:'',
 				introduce:'',
 				editorContent: '',
+				tags:[],
+				firstTag:'',
+				secondTag:'',
+				secondTags:[],
 			}
+		},
+		computed:{
 		},
 		mounted(){
 			this.init();
@@ -74,7 +96,6 @@
 				return "";
 			},
 			init(){
-				console.log(this.$route.query.articleId);
 				axios.post('/articles/details',{
 					articleId:this.$route.query.articleId
 				}).then((response)=>{
@@ -83,16 +104,33 @@
 						this.editorContent = res.result.articleContent;
 						this.title = res.result.articleTitle;
 						this.introduce = res.result.articleIntroduce;
+						this.firstTag = res.result.articleFirstTag;
+						this.secondTag = res.result.articleSecondTag;
 					}
 				})
 				this.initEditor();
+				axios.post('/confs/article/tags').then((response)=>{
+					let res = response.data;
+					if (res.status === 0) {
+						this.tags = res.result;
+					}
+				})
+			},
+			getSecondTags(val){
+				this.tags.forEach((tag)=>{
+					if (tag.tagName === val) {
+						this.secondTags = tag.tagChild
+					}
+				})
 			},
 			saveArticle () {
         axios.post('/articles/update',{
         	_id:this.$route.query.articleId,
         	articleIntroduce:this.introduce,
         	articleTitle:this.title,
-          articleContent:this.editorContent
+          articleContent:this.editorContent,
+          articleFirstTag:this.firstTag,
+          articleSecondTag:this.secondTag,
         }).then((response)=>{
           let res = response.data;
           if (res.status === 0) {
@@ -100,7 +138,6 @@
           	this.$router.push({
   						path:'/personalInfo/articleMine'
     				});
-    				this.$router.go(0)
           }
         })
       },

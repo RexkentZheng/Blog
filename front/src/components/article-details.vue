@@ -10,6 +10,7 @@
 			</li>
 			<li class="clearfix">
 				<p>{{article.articleIntroduce}}</p>
+				<p>{{article.articleFirstTag}}/{{article.articleSecondTag}}</p>
 			</li>
 			<li>
  				<div class="article-content" v-html='article.articleContent'></div>

@@ -12,6 +12,7 @@
 				<p>
 					{{question.questionIntroduce}}
 				</p>
+				<p>{{question.questionFirstTag}}/{{question.questionSecondTag}}</p>
 			</li>
 			<li>
  				<div class="question-content" v-html='question.questionContent'></div>

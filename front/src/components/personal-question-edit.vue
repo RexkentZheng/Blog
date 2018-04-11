@@ -1,6 +1,22 @@
 <template>
 	<div class="question-create">
 		<el-input v-model="title" placeholder="请输入文章标题"></el-input>
+		<el-select v-model="firstTag" @change='getSecondTags' placeholder="请选择一级标题">
+	    <el-option
+	      v-for="tag in tags"
+	      :key="tag.tagName"
+	      :label="tag.tagName"
+	      :value="tag.tagName">
+	    </el-option>
+	  </el-select>
+	  <el-select v-model="secondTag" placeholder="清选择二级标题">
+	    <el-option
+	      v-for="secondTag in secondTags"
+	      :key="secondTag"
+	      :label="secondTag"
+	      :value="secondTag">
+	    </el-option>
+	  </el-select>
 		<el-input
 		  type="textarea"
 		  :rows="3"
@@ -24,6 +40,10 @@
 				title:'',
 				introduce:'',
 				editorContent: '',
+				tags:[],
+				firstTag:'',
+				secondTag:'',
+				secondTags:[],
 			}
 		},
 		mounted(){
@@ -82,16 +102,33 @@
 						this.editorContent = res.result.questionContent;
 						this.introduce = res.result.questionIntroduce;
 						this.title = res.result.questionTitle;
+						this.firstTag = res.result.questionFirstTag;
+						this.secondTag = res.result.questionSecondTag;
 					}
 				})
 				this.initEditor();
+				axios.post('/confs/question/tags').then((response)=>{
+					let res = response.data;
+					if (res.status === 0) {
+						this.tags = res.result;
+					}
+				})
+			},
+			getSecondTags(val){
+				this.tags.forEach((tag)=>{
+					if (tag.tagName === val) {
+						this.secondTags = tag.tagChild
+					}
+				})
 			},
 			saveQuestion () {
         axios.post('/questions/update',{
         	_id:this.$route.query.questionId,
         	questionIntroduce:this.introduce,
          	questionTitle:this.title,
-          questionContent:this.editorContent
+          questionContent:this.editorContent,
+          questionFirstTag:this.firstTag,
+          questionecondTag:this.secondTag,
         }).then((response)=>{
           let res = response.data;
           if (res.status === 0) {

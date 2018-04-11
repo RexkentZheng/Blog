@@ -17,4 +17,4 @@ const confSchema = new Schema({
 	]
 })
 
-module.exports = mongoose.model('conf', confSchema, 'conf');
+module.exports = mongoose.model('conf', confSchema, 'confs');

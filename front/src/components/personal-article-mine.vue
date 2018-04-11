@@ -10,7 +10,7 @@
 						<p class="title">{{article.articleTitle}}</p>
 					</li>
 					<li class="clearfix">
-						<p class="created-time">{{article.articleCreatedTime}}</p>
+						<p class="created-time">{{article.articleFirstTag}}/{{article.articleSecondTag}}/{{article.articleCreatedTime}}</p>
 						<p class="edit">
 							<a href="javascript:;" @click='reload(article._id)'>点击编辑</a>
 						</p>

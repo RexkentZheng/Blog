@@ -43,7 +43,7 @@
 							{{article.articleTitle}}
 						</router-link>
 					<li class="article-introduce">
-						<p>{{article.articleAuthor}}/{{article.articleCreatedTime}}</p>
+						<p>{{article.articleAuthor}}/{{article.articleFirstTag}}/{{article.articleCreatedTime}}</p>
 					</li>
 					<li class="article-showcut">
 						<p>{{article.articleIntroduce}}</p>
@@ -62,7 +62,7 @@
 							{{question.questionTitle}}
 						</router-link>
 					<li class="question-introduce">
-						<p>{{question.questionAuthor}}/{{question.questionCreatedTime}}</p>
+						<p>{{question.questionAuthor}}/{{question.questionFirstTag}}/{{question.questionCreatedTime}}</p>
 					</li>
 					<li class="question-showcut">
 						<p>{{question.questionIntroduce}}</p>

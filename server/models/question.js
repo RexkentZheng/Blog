@@ -8,6 +8,8 @@ const questionSchema = new Schema({
 	'questionTitle':String,
 	'questionIntroduce':String,
 	'questionContent':String,
+	'questionFirstTag':String,
+	'questionSecondTag':String,
 	'questionCreatedTime':String,
 	'like':[],
 	'questionAnswers':[

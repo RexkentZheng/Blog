@@ -8,6 +8,8 @@ const articleSchema = new Schema({
 	'articleTitle':String,
 	'articleIntroduce':String,
 	'articleContent':String,
+	'articleFirstTag':String,
+	'articleSecondTag':String,
 	'articleCreatedTime':String,
 	'like':[],
 	'comments':[
