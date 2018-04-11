@@ -15,7 +15,7 @@
 <script>
 	import wangeditor from 'wangeditor'
 	import axios from 'axios'
-	
+
 	export default{
 		data(){
 			return{
@@ -77,16 +77,17 @@
           if (res.status === 0) {
           	alert('保存成功');
           	this.$router.push({
-  						path:'/personalInfo'
+  						path:'/personalInfo/articleMine'
     				});
-    				this.$router.go(0)
+    				this.$router.go(0);
           }
         })
       },
       cancel(){
       	this.$router.push({
-      		path:'/personalInfo'
+      		path:'/personalInfo/articleMine'
       	})
+      	this.$router.go(0);
       }
 		}
 	}

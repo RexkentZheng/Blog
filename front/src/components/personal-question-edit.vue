@@ -105,7 +105,7 @@
       },
       cancel(){
       	this.$router.push({
-      		path:'/personalInfo'
+      		path:'/personalInfo/questionMine'
       	})
       }
 		}

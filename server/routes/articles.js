@@ -281,4 +281,18 @@ router.post('/new',(req,res,next)=>{
     }
   })
 })
+
+//删除文章
+router.post('/del',(req,res,next)=>{
+  let { _id } = req.body;
+  Article.remove({
+    _id
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
 module.exports = router;

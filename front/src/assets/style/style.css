@@ -510,17 +510,29 @@ a:hover {
 	margin: 5px 0 0 0;
 }
 .article-mine > ul > li .one-piece .title{
+	font-size: 17px;
 	float: left;
+	margin-bottom: 5px;
 }
 .article-mine > ul > li .one-piece .created-time{
 	float: left;
 	font-size: 13px;
 	color: gray;
 }
+.article-mine > ul > li .one-piece .introduce{
+	float: left;
+}
 .article-mine > ul > li .one-piece .edit{
 	float: right;
 }
-
+.article-mine > ul > li .one-piece .del{
+	float: right;
+	margin-right: 10px;
+}
+.article-mine > ul > li .one-piece .edit a,
+.article-mine > ul > li .one-piece .del a{
+	color: #409EFF;
+}
 /*文章详情页*/
 .article-details{
 	width: 650px;
@@ -690,16 +702,30 @@ a:hover {
 	margin: 5px 0 0 0;
 }
 .question-mine > ul > li .one-piece .title{
+	font-size: 17px;
 	float: left;
+	margin-bottom: 5px;
 }
 .question-mine > ul > li .one-piece .created-time{
 	float: left;
 	font-size: 13px;
 	color: gray;
 }
+.question-mine > ul > li .one-piece .introduce{
+	float: left;
+}
 .question-mine > ul > li .one-piece .edit{
 	float: right;
 }
+.question-mine > ul > li .one-piece .del{
+	float: right;
+	margin-right: 10px;
+}
+.question-mine > ul > li .one-piece .edit a,
+.question-mine > ul > li .one-piece .del a{
+	color: #409EFF;
+}
+
 
 /*问答详情页*/
 .question-details{

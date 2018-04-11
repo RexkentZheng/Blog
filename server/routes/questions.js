@@ -23,7 +23,7 @@ function getRight(res, doc) {
   });
 }
 
-//创建文章
+//创建问答
 router.post('/create',(req,res,next)=>{
   let { author, title, introduce, content } = req.body;
   Question.findOne({}).sort({
@@ -274,6 +274,20 @@ router.post('/new',(req,res,next)=>{
   Question.find({}).sort({
     questionId: -1,
   }).limit(6).exec((err, doc) => {
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
+
+//删除问答
+router.post('/del',(req,res,next)=>{
+  let { _id } = req.body;
+  Question.remove({
+    _id
+  },(err,doc)=>{
     if (err) {
       getWrong(res,err);
     } else {
