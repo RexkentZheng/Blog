@@ -45,10 +45,24 @@
 		        	</el-menu-item>
 	        	</router-link>
 		      </el-submenu>
-		      <el-menu-item index="4">
-		        <i class="el-icon-setting"></i>
-		        <span slot="title">个人设置</span>
-		      </el-menu-item>
+		      <el-submenu index="4">
+		        <template slot="title">
+		          <i class="el-icon-setting"></i>
+		          <span>个人设置</span>
+		        </template>
+		        <router-link to='/personalInfo/confClassify'>
+		          <el-menu-item v-if="getCookies('userType') === '1'" index="4-1">
+			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        	分类设置
+		        	</el-menu-item>
+	        	</router-link>
+	        	<router-link to='/personalInfo/questionMine'>
+		        	<el-menu-item index="4-2">
+			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			        	其他设置
+		        	</el-menu-item>
+	        	</router-link>
+		      </el-submenu>
 		    </el-menu>
 		  </el-col>
 		  <el-col :span="13" :offset="1">
@@ -58,6 +72,7 @@
 				<question-create v-if="pathName === 'questionCreate'"></question-create>
 				<question-mine v-if="pathName === 'questionMine'"></question-mine>
 				<question-edit v-if="pathName === 'questionEdit'"></question-edit>
+				<conf-classify v-if="pathName === 'confClassify'"></conf-classify>
 		  </el-col>
 		</el-row>
 	</div>
@@ -65,12 +80,13 @@
 
 <script>
 	import axios from 'axios'
-	import ArticleCreate from './personal-article-create'	
+	import ArticleCreate from './personal-article-create'
 	import ArticleMine from './personal-article-mine'
 	import ArticleEdit from './personal-article-edit'
 	import QuestionCreate from './personal-question-create'
 	import QuestionMine from './personal-question-mine'
-	import questionEdit from './personal-question-edit'
+	import QuestionEdit from './personal-question-edit'
+	import ConfClassify from './personal-conf-classify'
 
 	export default{
 		data(){
@@ -84,7 +100,8 @@
 	    ArticleEdit,
 	    QuestionCreate,
 	    QuestionMine,
-	    questionEdit,
+	    QuestionEdit,
+	    ConfClassify,
 	  },
 	  computed:{
 	  	pathName(){

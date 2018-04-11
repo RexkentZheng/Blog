@@ -8,6 +8,12 @@ const confSchema = new Schema({
 			'tagName':String,
 			'tagChild':[]
 		}
+	],
+	'questionTag':[
+		{
+			'tagName':String,
+			'tagChild':[]
+		}
 	]
 })
 

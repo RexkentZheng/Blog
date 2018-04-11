@@ -859,3 +859,93 @@ a:hover {
 .question-details > ul .answer-details .one-piece .content-children li p:nth-child(2){
 	float: right;
 }
+
+/*分类编辑页*/
+.conf-classify .btn-part{
+	margin-bottom: 10px
+}
+.conf-classify .content-part .article-classify{
+	margin-top: 15px;
+}
+.conf-classify .content-part .article-classify > ul > li:nth-child(1) .el-button{
+	margin-bottom: 10px;
+}
+.conf-classify .content-part .article-classify > ul > li{
+	text-align: left;
+	border-bottom: 1px solid gray;
+}
+.conf-classify .content-part .article-classify > ul > li .first-name{
+	float: left;
+	margin-left: 10px
+}
+.conf-classify .content-part .article-classify > ul > li .opreation {
+	float: right;
+	margin-right: 10px;
+}
+.conf-classify .content-part .article-classify > ul > li .opreation span{
+	cursor: pointer;
+	color: #409EFF;
+}
+.conf-classify .content-part .article-classify > ul .update {
+	width: 450px;
+}
+.conf-classify .content-part .article-classify > ul .update .el-input,
+.conf-classify .content-part .article-classify > ul .update .el-textarea{
+	margin-bottom: 10px;
+}
+.conf-classify .content-part .article-classify > ul .update .el-button {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+.conf-classify .content-part .question-classify{
+	margin-top: 15px;
+}
+.conf-classify .content-part .question-classify > ul > li:nth-child(1) .el-button{
+	margin-bottom: 10px;
+}
+.conf-classify .content-part .question-classify > ul > li{
+	text-align: left;
+	border-bottom: 1px solid gray;
+}
+.conf-classify .content-part .question-classify > ul > li .first-name{
+	float: left;
+	margin-left: 10px
+}
+.conf-classify .content-part .question-classify > ul > li .opreation {
+	float: right;
+	margin-right: 10px;
+}
+.conf-classify .content-part .question-classify > ul > li .opreation span{
+	cursor: pointer;
+	color: #409EFF;
+}
+.conf-classify .content-part .question-classify > ul .update {
+	width: 450px;
+}
+.conf-classify .content-part .question-classify > ul .update .el-input,
+.conf-classify .content-part .question-classify > ul .update .el-textarea{
+	margin-bottom: 10px;
+}
+.conf-classify .content-part .question-classify > ul .update .el-button {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
