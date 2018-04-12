@@ -3,7 +3,7 @@
 		<el-button @click='newMessageFlag=true' v-if="getCookies('userType') !== 1" type="primary" size='small' plain>新建留言</el-button>
 		<div class="new-message" v-if='newMessageFlag'>
 			<el-input v-model='newMessage'></el-input>
-			<el-button @click='subminMessgae()'type="primary" size='mini' plain>确定提交</el-button>
+			<el-button @click='subminMessgae()'type="primary" size='mini' plain>确定</el-button>
 			<el-button @click='newMessageFlag=false' size='mini' plain>取消</el-button>
 		</div>
 		<ul>
@@ -12,7 +12,7 @@
 					<li class="clearfix">
 						<p class="content-author">{{message.messageBoardUserName}}</p>
 						<i @click='nowChild === index ? nowChild = -1 : nowChild = index' v-if='message.messageBoardChildren.length>0' :class="nowChild === index ? 'el-icon-caret-top':'el-icon-caret-bottom'"></i>
-						<p v-if=" parseFloat(getCookies('userType')) === 1" class="del">删除</p>
+						<p @click='delMessage(message._id)' v-if=" parseFloat(getCookies('userType')) === 1" class="del">删除</p>
 						<p @click='nowIndex = index' v-if="getCookies('userType') !== 1" class="rep">回复</p>
 					</li>
 					<li class="clearfix">
@@ -44,7 +44,7 @@
 
 <script>
 	import axios from 'axios'
-	
+
 	export default{
 		data(){
 			return{
@@ -90,8 +90,27 @@
 				}).then((response)=>{
 					let res =response.data;
 					if (res.status === 0) {
-						alert('提交成功');
-						this.$router.go(0);
+						this.$message({
+	            type: 'success',
+	            message: '留言成功'
+	          });
+	          this.init();
+	          this.newMessageFlag = false;
+	          this.newMessage = '';
+					}
+				})
+			},
+			delMessage(messageId){
+				axios.post('/messageBords/del',{
+					_id:messageId
+				}).then((response)=>{
+					let res =response.data;
+					if (res.status === 0) {
+						this.$message({
+	            type: 'success',
+	            message: '删除成功'
+	          });
+	          this.init();
 					}
 				})
 			},
@@ -110,8 +129,13 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('提交成功');
-						this.$router.go(0);
+						this.$message({
+	            type: 'success',
+	            message: '删除成功'
+	          });
+	          this.init();
+	          this.replyMessage = '';
+	          this.nowIndex = -1;
 					}
 				})
 			}

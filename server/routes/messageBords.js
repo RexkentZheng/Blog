@@ -96,4 +96,18 @@ router.post('/reply',(req,res,next)=>{
     }
   })
 })
+
+//删除留言
+router.post('/del',(req,res,next)=>{
+  let { _id } = req.body;
+  MessageBords.remove({
+    _id
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      getRight(res,doc);
+    }
+  })
+})
 module.exports = router;

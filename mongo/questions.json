@@ -66,3 +66,19 @@
     ], 
     "__v" : NumberInt(0)
 }
+{ 
+    "_id" : ObjectId("5acd77de8942cb029b158edd"), 
+    "like" : [
+
+    ], 
+    "questionId" : 201804110410000.0, 
+    "questionAuthor" : "admin", 
+    "questionTitle" : "ajax 数据被人看见", 
+    "questionIntroduce" : "使用ajax进行表单提交，开发者工具可以看见数据怎么办", 
+    "questionContent" : "<p>想使用ajax进行表单提交，验证用户名密码是否正确，使用json传输数据，也是post提交方式，但是一提交发现开发者工具上可以看见用户名和密码。请问是我理解错了，不应该这么写，还是哪儿写的不对，少了什么步骤（密码加密先不谈）？<br><img src=\"https://segmentfault.com/img/bV8aa6?w=539&amp;h=342\"><br><img src=\"https://segmentfault.com/img/bV8aa7?w=475&amp;h=158\"><br></p>", 
+    "questionCreatedTime" : "2018-04-11 10:50", 
+    "questionAnswers" : [
+
+    ], 
+    "__v" : NumberInt(0)
+}

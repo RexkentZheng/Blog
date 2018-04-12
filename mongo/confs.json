@@ -1,0 +1,30 @@
+{ 
+    "_id" : ObjectId("5acd98a540715af00f51cac9"), 
+    "articleTag" : [
+        {
+            "tagChild" : [
+                "测试标签", 
+                "123"
+            ], 
+            "_id" : ObjectId("5acdb1220ccdec0910b91581"), 
+            "tagName" : "nihao123"
+        }, 
+        {
+            "tagChild" : [
+                "123", 
+                "123"
+            ], 
+            "_id" : ObjectId("5acdb1250ccdec0910b91582"), 
+            "tagName" : "123123"
+        }
+    ], 
+    "questionTag" : [
+        {
+            "tagChild" : [
+
+            ], 
+            "_id" : ObjectId("5acdb416bd37f4094897e379"), 
+            "tagName" : "123"
+        }
+    ]
+}
