@@ -28,7 +28,9 @@ a:hover {
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
+.el-autocomplete-suggestion{
+	z-index: 2012;
+}
 /*搜索框自带建议部分*/
 .el-autocomplete-suggestion .title{
 
@@ -81,7 +83,7 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(104, 179, 200, 0.65);
-	z-index: 10002;
+	z-index: 2001;
 }
 
 .login-part {
@@ -599,8 +601,8 @@ a:hover {
 }
 .article-details > ul .comment .el-input{
 	width: 400px;
-	float: right;
-	margin-bottom: 10px;
+	float: left;
+	margin:  0 0 10px 90px;
 }
 .article-details > ul .comment .el-button{
 	float: right;

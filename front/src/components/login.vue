@@ -140,8 +140,33 @@
 				})
 			},
 			register(){
+				let reg = /[~#^$@%&!*()<>:;'"{}【】  ]/gi;
+				if (reg.test(this.userName)) {
+					this.$message({
+			      message: '用户名中含有特殊字符',
+			      type: 'warning'
+			    });
+        	return;  
+    		}
+    		if (this.userName.split('').length>12) {
+    			this.$message({
+			      message: '用户名长度超过12位',
+			      type: 'warning'
+			    });
+        	return;
+    		}
+    		if (this.userName === '') {
+    			this.$message({
+			      message: '用户名不能为空',
+			      type: 'warning'
+			    });
+        	return;
+    		}
 				if (this.userPwd !== this.userPwdAgain) {
-					alert('两次输入的密码不一致')
+					this.$message({
+			      message: '两次输入的密码不一致',
+			      type: 'warning'
+			    });
 				} else {
 					axios.post('./users/register',{
 						userName:this.userName,
@@ -149,11 +174,20 @@
 					}).then((response)=>{
 						const res = response.data;
 						if (res.status === 10001) {
-							alert(res.msg);
+							this.$message({
+					      message: res.msg,
+					      type: 'warning'
+					    });
 						} else if(res.status === 1){
-							alert('注册失败，请稍后再试');
+							this.$message({
+					      message: '注册失败，请稍后再试',
+					      type: 'warning'
+					    });
 						}else{
-							alert('注册成功');
+							this.$message({
+					      message: '注册成功',
+					      type: 'success'
+					    });
 							this.$router.go(0);
 						}
 					})

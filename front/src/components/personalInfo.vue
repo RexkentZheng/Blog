@@ -117,7 +117,10 @@
 		methods:{
 			init(){
 				if (!this.getCookies('userName')) {
-					alert('请先登录再进行操作');
+					this.$message({
+			      message: '请先登录再进行操作',
+			      type: 'warning'
+			    });
 					this.$router.push({
 						path:'/article'
 					})

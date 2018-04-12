@@ -76,7 +76,10 @@
         editor.customConfig.uploadImgShowBase64 = true
         editor.create()
         if (!this.getCookies('userName')) {
-        	alert('请先登录再进行操作');
+        	this.$message({
+			      message: '请先登录再进行操作',
+			      type: 'warning'
+			    });
         	this.$router.push({
         		path:'/'
         	})
@@ -132,7 +135,10 @@
         }).then((response)=>{
           let res = response.data;
           if (res.status === 0) {
-          	alert('保存成功');
+          	this.$message({
+				      message: '保存成功',
+				      type: 'success'
+				    });
           	this.$router.push({
   						path:'/personalInfo/questionMine'
     				});

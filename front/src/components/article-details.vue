@@ -170,6 +170,13 @@
 				})
 			},
 			comment(){
+				if (this.getCookies('userName') === '') {
+					this.$message({
+	          message: '请先登录再进行操作',
+	          type: 'warning'
+	        });
+	        return;
+				}
 				axios.post('/articles/comment',{
 					_id:this.article._id,
 					commentUserName:this.getCookies('userName'),
@@ -216,6 +223,13 @@
 				})
 			},
 			reply(commentId){
+				if (this.getCookies('userName') === '') {
+					this.$message({
+	          message: '请先登录再进行操作',
+	          type: 'warning'
+	        });
+	        return;
+				}
 				axios.post('/articles/reply',{
 					_id:this.article._id,
 					commentId:commentId,
@@ -224,10 +238,17 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('回复成功');
-						this.$router.go(0);
+						this.$message({
+	          message: '回复成功',
+		          type: 'success'
+		        });
+		        this.init();
 					} else {
-						alert('回复失败')
+						this.$message({
+	          message: '回复失败',
+		          type: 'warning'
+		        });
+		        this.init();
 					}
 				})
 			}

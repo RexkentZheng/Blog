@@ -109,7 +109,10 @@
         }).then((response)=>{
           let res = response.data;
           if (res.status === 0) {
-          	alert('保存成功');
+          	this.$message({
+				      message: '保存成功',
+				      type: 'success'
+				    });
           	this.$router.push({
   						path:'/personalInfo/articleMine'
     				});

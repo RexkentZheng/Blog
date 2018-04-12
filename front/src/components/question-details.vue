@@ -145,9 +145,15 @@
 			},
 			support(){
 				if (this.question.questionAuthor === this.getCookies('userName')) {
-					alert('请勿给自己的问答点赞');
+					this.$message({
+			      message: '请勿给自己的问答点赞',
+			      type: 'warning'
+			    });
 				} else if (this.getCookies('userName') === '') {
-					alert('请先登录再进行操作');
+					this.$message({
+			      message: '请先登录再进行操作',
+			      type: 'warning'
+			    });
 				} else {
 					axios.post('/questions/support',{
 						_id:this.question._id,
@@ -155,9 +161,15 @@
 					}).then((response)=>{
 						let res = response.data;
 						if (res.status === 10001) {
-							alert('请勿重复点赞');
+							this.$message({
+			          message: '请勿重复点赞',
+			          type: 'warning'
+			        });
 						} else if (res.status === 0) {
-							alert('点赞成功');
+							this.$message({
+			          message: '点赞成功',
+			          type: 'success'
+			        });
 							this.question.like.push(this.getCookies('userName'));
 							this.supportFlag = true;
 						} else {}{
@@ -173,7 +185,10 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('取消赞成功');
+						this.$message({
+		          message: '取消赞成功',
+		          type: 'success'
+		        });
 						this.question.like.splice(this.question.like.indexOf(this.getCookies('userName')), 1);
 						this.supportFlag = false;
 					}
@@ -181,7 +196,10 @@
 			},
 			answer(){
 				if (this.getCookies('userName') === '') {
-					alert('请先登录后再回答')
+					this.$message({
+	          message: '请先登录后再回答',
+	          type: 'warning'
+	        });
 				} else {
 					axios.post('/questions/answer',{
 						_id:this.question._id,
@@ -190,10 +208,17 @@
 					}).then((response)=>{
 						let res = response.data;
 						if (res.status === 0) {
-							alert('回答成功');
-							this.$router.go(0);
+							this.$message({
+			          message: '回答成功',
+			          type: 'success'
+			        });
+			        this.init();
 						} else {
-							alert('回答失败')
+							this.$message({
+			          message: '回答失败',
+			          type: 'warning'
+			        });
+			        this.init();
 						}
 					})
 				}
@@ -216,15 +241,28 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('删除成功');
+						this.$message({
+		          message: '删除成功',
+		          type: 'success'
+		        });
 						this.dialogVisible = false;
-						this.$router.go(0);
+						this.init();
 					} else {
-						alert('删除失败')
+						this.$message({
+		          message: '删除失败',
+		          type: 'warning'
+		        });
 					}
 				})
 			},
 			reply(answerId){
+				if (this.getCookies('userName') === '') {
+					this.$message({
+	          message: '请先登录再进行操作',
+	          type: 'warning'
+	        });
+	        return;
+				}
 				axios.post('/questions/reply',{
 					_id:this.question._id,
 					answerId:answerId,
@@ -233,10 +271,17 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('回复成功');
-						this.$router.go(0);
+						this.$message({
+		          message: '回复成功',
+		          type: 'success'
+		        });
+						this.init();
 					} else {
-						alert('回复失败')
+						this.$message({
+		          message: '回复失败',
+		          type: 'warning'
+		        });
+						this.init();
 					}
 				})
 			}
