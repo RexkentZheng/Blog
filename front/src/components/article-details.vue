@@ -120,9 +120,15 @@
 			},
 			support(){
 				if (this.article.articleAuthor === this.getCookies('userName')) {
-					alert('请勿给自己的文章点赞');
+					this.$message({
+	          message: '请勿给自己的文章点赞',
+	          type: 'warning'
+	        });
 				} else if (this.getCookies('userName') === '') {
-					alert('请先登录再进行操作');
+					this.$message({
+	          message: '请先登录再进行操作',
+	          type: 'warning'
+	        });
 				} else {
 					axios.post('/articles/support',{
 						_id:this.article._id,
@@ -130,9 +136,15 @@
 					}).then((response)=>{
 						let res = response.data;
 						if (res.status === 10001) {
-							alert('请勿重复点赞');
+							this.$message({
+			          message: '请勿重复点赞',
+			          type: 'warning'
+			        });
 						} else if (res.status === 0) {
-							alert('点赞成功');
+							this.$message({
+			          message: '点赞成功',
+			          type: 'success'
+			        });
 							this.article.like.push(this.getCookies('userName'));
 							this.supportFlag = true;
 						} else {}{
@@ -148,7 +160,10 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('取消赞成功');
+						this.$message({
+		          message: '取消赞成功',
+		          type: 'success'
+		        });
 						this.article.like.splice(this.article.like.indexOf(this.getCookies('userName')), 1);
 						this.supportFlag = false;
 					}
@@ -162,10 +177,16 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('评论成功');
+						this.$message({
+		          message: '评论成功',
+		          type: 'success'
+		        });
 						this.$router.go(0);
 					} else {
-						alert('评论失败')
+						this.$message({
+		          message: '评论失败',
+		          type: 'warning'
+		        });
 					}
 				})
 			},
@@ -180,11 +201,17 @@
 				}).then((response)=>{
 					let res = response.data;
 					if (res.status === 0) {
-						alert('删除成功');
+						this.$message({
+		          message: '删除成功',
+		          type: 'success'
+		        });
 						this.dialogVisible = false;
 						this.$router.go(0);
 					} else {
-						alert('删除失败')
+						this.$message({
+		          message: '删除失败',
+		          type: 'warning'
+		        });
 					}
 				})
 			},

@@ -93,7 +93,10 @@
 					let res= response.data;
 					if (res.status === 0) {
 						this.dialogVisible = false;
-						alert('删除成功！')
+						this.$message({
+		          message: '删除成功',
+		          type: 'success'
+		        });
 						this.init();
 					}
 				})

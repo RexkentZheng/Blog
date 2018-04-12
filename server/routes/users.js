@@ -171,4 +171,39 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+
+//修改密码
+router.post('/changePwd',(req,res,next)=>{
+  let { userId, oldPwd, newPwd } = req.body;
+  User.findOne({
+    userId
+  },(err,doc)=>{
+    if (err) {
+      getWrong(res,err);
+    } else {
+      console.log(doc.userPwd);
+      console.log(md5(oldPwd));
+      if (doc.userPwd !== md5(oldPwd)) {
+        res.json({
+          status:10001,
+          msg:'原始密码错误',
+          result:''
+        })
+      } else {
+        User.update({
+          userId
+        },{
+          $set:{
+            userPwd:md5(newPwd)
+          }
+        },(err1,doc1)=>{
+        if (err1) {
+          getWrong(res,err1);
+        } else {
+          getRight(res,doc1);
+        }})
+      }
+    }
+  })
+})
 module.exports = router;

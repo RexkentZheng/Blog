@@ -56,7 +56,7 @@
 			        	分类设置
 		        	</el-menu-item>
 	        	</router-link>
-	        	<router-link to='/personalInfo/questionMine'>
+	        	<router-link to='/personalInfo/confOther'>
 		        	<el-menu-item index="4-2">
 			          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			        	其他设置
@@ -73,6 +73,7 @@
 				<question-mine v-if="pathName === 'questionMine'"></question-mine>
 				<question-edit v-if="pathName === 'questionEdit'"></question-edit>
 				<conf-classify v-if="pathName === 'confClassify'"></conf-classify>
+				<conf-other v-if="pathName === 'confOther'"></conf-other>
 		  </el-col>
 		</el-row>
 	</div>
@@ -87,6 +88,7 @@
 	import QuestionMine from './personal-question-mine'
 	import QuestionEdit from './personal-question-edit'
 	import ConfClassify from './personal-conf-classify'
+	import ConfOther from './personal-conf-other'
 
 	export default{
 		data(){
@@ -102,6 +104,7 @@
 	    QuestionMine,
 	    QuestionEdit,
 	    ConfClassify,
+	    ConfOther,
 	  },
 	  computed:{
 	  	pathName(){

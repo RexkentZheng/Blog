@@ -953,10 +953,22 @@ a:hover {
 	margin: 0 0 10px 10px;
 }
 
+/*其他设置*/
+.conf-other .changePwd{
 
-
-
-
+}
+.conf-other .changePwd ul li p{
+	line-height: 28px;
+	width: 120px;
+}
+.conf-other .changePwd ul li p,
+.conf-other .changePwd ul li .el-input{
+	float: left;
+	margin: 0 0 10px 10px;
+}
+.conf-other .changePwd ul li .el-input{
+	width: 300px;
+}
 
 
 
