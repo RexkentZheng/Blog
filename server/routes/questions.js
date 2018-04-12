@@ -49,7 +49,7 @@ router.post('/create',(req,res,next)=>{
         } else {
           getRight(res, doc);
         }
-      })    
+      })
     }else{
       const questionId = hello.createUserId(00000000000000, 4);
       Question.create({
@@ -69,7 +69,7 @@ router.post('/create',(req,res,next)=>{
         } else {
           getRight(res, doc);
         }
-      })    
+      })
     }
   })
 })
@@ -124,7 +124,7 @@ router.post('/update',(req,res,next)=>{
 
 //获取全部问答
 router.post('/all',(req,res,next)=>{
-  Question.find({},(err,doc)=>{
+  Question.find({},'questionAuthor questionTitle questionIntroduce like questionFirstTag questionSecondTag questionCreatedTime',(err,doc)=>{
     if (err) {
       getWrong(res,err);
     } else {
@@ -285,7 +285,7 @@ router.post('/search',(req,res,next)=>{
 
 //获取最新问答
 router.post('/new',(req,res,next)=>{
-  Question.find({}).sort({
+  Question.find({},'questionAuthor questionTitle questionIntroduce like questionFirstTag questionSecondTag questionCreatedTime').sort({
     questionId: -1,
   }).limit(6).exec((err, doc) => {
     if (err) {

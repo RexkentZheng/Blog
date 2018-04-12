@@ -49,7 +49,7 @@ router.post('/create',(req,res,next)=>{
         } else {
           getRight(res, doc);
         }
-      })    
+      })
     }else{
       const articleId = hello.createUserId(00000000000000, 3);
       Article.create({
@@ -69,7 +69,7 @@ router.post('/create',(req,res,next)=>{
         } else {
           getRight(res, doc);
         }
-      })    
+      })
     }
   })
 })
@@ -125,7 +125,7 @@ router.post('/update',(req,res,next)=>{
 
 //获取全部文章
 router.post('/all',(req,res,next)=>{
-  Article.find({},(err,doc)=>{
+  Article.find({},'articleTitle articleAuthor articleIntroduce articleFirstTag articleSecondTag like articleCreatedTime',(err,doc)=>{
     if (err) {
       getWrong(res,err);
     } else {
@@ -285,7 +285,7 @@ router.post('/search',(req,res,next)=>{
 
 //获取最新文章
 router.post('/new',(req,res,next)=>{
-  Article.find({}).sort({
+  Article.find({},'articleTitle articleAuthor articleIntroduce articleFirstTag articleSecondTag like articleCreatedTime').sort({
     articleId: -1,
   }).limit(6).exec((err, doc) => {
     if (err) {
