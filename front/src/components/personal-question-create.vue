@@ -99,6 +99,13 @@
 				})
 			},
 			saveQuestion:function () {
+				if (!this.title || !this.introduce || !this.editorContent || !this.firstTag || !this.secondTag)  {
+					this.$message({
+						message:'请输入所有信息后再进行保存',
+						type:'warning'
+					})
+					return;
+				}
         axios.post('/questions/create',{
         	author:this.getCookies('userName'),
         	title:this.title,

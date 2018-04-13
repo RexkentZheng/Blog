@@ -28,7 +28,7 @@ module.exports = {
       },
       '/users/*': {
         target: 'http://localhost:2334'
-      },      
+      },
     },
 
     // Various Dev Server settings

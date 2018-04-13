@@ -179,7 +179,7 @@ a:hover {
 	text-align: center;
 }
 .nav-main{
-	width: 400px;
+	width: 500px;
 	display: block;
 	margin: 0 auto;
 }
@@ -283,7 +283,8 @@ a:hover {
 .home .new-articles .one-article ul li{
 	text-align: left;
 }
-.home .new-articles .one-article ul .article-title a{
+.home .new-articles .one-article ul .article-title a,
+.home .new-articles .one-article ul .article-introduce a{
 	color: #409EFF;
 }
 .home .new-questions h3{
@@ -297,24 +298,37 @@ a:hover {
 .home .new-questions .one-question ul li{
 	text-align: left;
 }
-.home .new-questions .one-question ul .question-title a{
+.home .new-questions .one-question ul .question-title a,
+.home .new-questions .one-question ul .question-introduce a{
 	color: #409EFF;
 }
+
 /*文章列表页*/
 .article {
 	width: 500px;
 	margin: 0 auto;
 }
 .article .search-part{
-	width: 375px;
+	width: 410px;
 	margin: 0 auto;
 }
 .article .search-part .el-input{
-	width: 300px;
+	width: 410px;
 	float: left;
 }
 .article .search-part button{
 	float: left;
+}
+.article .filter-part{
+	width: 410px;
+	margin: 20px auto 0;
+}
+.article .filter-part .el-select{
+	width: 200px;
+	float: left;
+}
+.article .filter-part .el-select:nth-child(2){
+	margin-left: 10px;
 }
 .article .list-part .one-piece{
 	margin: 20px 0;
@@ -351,15 +365,26 @@ a:hover {
 	margin: 0 auto;
 }
 .question .search-part{
-	width: 375px;
+	width: 410px;
 	margin: 0 auto;
 }
 .question .search-part .el-input{
-	width: 300px;
+	width: 410px;
 	float: left;
 }
 .question .search-part button{
 	float: left;
+}
+.question .filter-part{
+	width: 410px;
+	margin: 20px auto 0;
+}
+.question .filter-part .el-select{
+	width: 200px;
+	float: left;
+}
+.question .filter-part .el-select:nth-child(2){
+	margin-left: 10px;
 }
 .question .list-part .one-piece{
 	margin: 20px 0;
@@ -972,15 +997,76 @@ a:hover {
 	width: 300px;
 }
 
+/*个人信息修改*/
+.info-edit > ul > li{
+	margin: 10px 0;
+}
+.info-edit > ul > li >p{
+	float: left;
+	width: 100px;
+	margin:  0 15px 0 0 ;
+	line-height: 32px;
+}
+.info-edit > ul > li > img{
+	width: 100px;
+	height: 100px;
+	margin-left: 20px;
+	border-radius: 5px;
+	border:1px solid gray;
+}
+.info-edit > ul > li > .el-input{
+	width: 300px;
+	float: left;
+}
+.info-edit > ul > li > .el-textarea{
+	width: 300px;
+	float: left;
+}
 
-
-
-
-
-
-
-
-
+/*个人信息详情*/
+.user-info{
+	width: 400px;
+	margin: 0 auto;
+}
+.user-info > ul > li img{
+	width: 100px;
+	height: 100px;
+}
+.user-info > ul > li > p{
+	float: left;
+	margin-right: 15px;
+}
+.user-info > ul > li > p:nth-child(1){
+	width: 100px;
+}
+.user-info .user-questions > h3{
+	margin-top: 40px;
+}
+.user-info .user-questions .one-piece{
+	margin: 20px 0;
+}
+.user-info .user-questions .one-piece p{
+	margin: 10px 0 0 0 ;
+}
+.user-info .user-questions .one-piece li:nth-child(1){
+}
+.user-info .user-questions .one-piece li:nth-child(1) p{
+	font-weight: bold;
+	font-size: 18px;
+	float: left;
+	color: #409EFF;
+}
+.user-info .user-questions .one-piece li p a{
+	color: #409EFF;
+}
+.user-info .user-questions .one-piece li:nth-child(2) p{
+	float: left;
+	font-size: 13px;
+	color: gray;
+}
+.user-info .user-questions .one-piece li:nth-child(3) p{
+	float: left;
+}
 
 
 

@@ -33,7 +33,7 @@
 <script>
 	import wangeditor from 'wangeditor'
 	import axios from 'axios'
-	
+
 	export default{
 		data(){
 			return{
@@ -127,6 +127,13 @@
 				})
 			},
 			saveArticle () {
+				if (!this.title || !this.introduce || !this.editorContent || !this.firstTag || !this.secondTag)  {
+					this.$message({
+						message:'请输入所有信息后再进行保存',
+						type:'warning'
+					})
+					return;
+				}
         axios.post('/articles/update',{
         	_id:this.$route.query.articleId,
         	articleIntroduce:this.introduce,

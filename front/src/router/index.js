@@ -7,7 +7,7 @@ import question from "./../components/question";
 import questionDetails from "./../components/question-details";
 import messageBord from "./../components/messageBord";
 import personalInfo from "./../components/personalInfo";
-import hello from "./../components/hello.vue";
+import userInfo from './../components/userInfo';
 
 Vue.use(Router)
 
@@ -39,6 +39,10 @@ export default new Router({
 		path: "/messageBord",
 		name: 'messageBord',
 		component: messageBord
+	},{
+		path: "/userInfo",
+		name: 'userInfo',
+		component: userInfo
 	},{
 		path: "/personalInfo",
 		name: 'personalInfo',

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const User = require('../models/user');
 const hello = require('./../utils/userIdCreator.js');
-const personalInfo = require('./../models/personalInfo');
+const PersonalInfo = require('./../models/personalInfo');
 
 require('./../utils/dateFormater');
 
@@ -66,7 +66,20 @@ router.post('/register',(req,res,next)=>{
 		  			if (err1) {
 		  				getWrong(res,err1);
 		  			} else {
-		  				getRight(res,doc1);
+              PersonalInfo.create({
+                userId:userId,
+                userName:userName,
+                userType:2,
+                userHP:'./../static/default.png',
+                userMotto:'他很懒，什么都没有留下',
+                userIntroduce:''
+              },(err2,doc2)=>{
+                if (err2) {
+                  getWrong(res,err2);
+                } else {
+                  getRight(res,doc2);
+                }
+              })
 		  			}
 		  		})
 		  	} else {
@@ -80,7 +93,20 @@ router.post('/register',(req,res,next)=>{
 		  			if (err1) {
 		  				getWrong(res,err1);
 		  			} else {
-		  				getRight(res,doc1);
+		  				PersonalInfo.create({
+                userId:userId,
+                userName:userName,
+                userType:2,
+                userHP:'',
+                userMotto:'他很懒，什么都没有留下',
+                userIntroduce:''
+              },(err2,doc2)=>{
+                if (err2) {
+                  getWrong(res,err2);
+                } else {
+                  getRight(res,doc2);
+                }
+              })
 		  			}
 		  		})
 		  	}

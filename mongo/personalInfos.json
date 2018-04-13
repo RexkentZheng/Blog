@@ -1,0 +1,13 @@
+{ 
+    "_id" : ObjectId("5ad04b20e8b89f0a30b473de"), 
+    "userId" : 201804070210001.0, 
+    "userName" : "admin", 
+    "userType" : NumberInt(2), 
+    "userHP" : "./../static/default.png", 
+    "userMotto" : "没有不可能", 
+    "userIntroduce" : "wqeqwewwqeqweq", 
+    "userBirthday" : ISODate("2018-04-15T16:00:00.000+0000"), 
+    "userTel" : NumberInt(123123), 
+    "userEmail" : "123123123123@qq.com", 
+    "__v" : NumberInt(0)
+}

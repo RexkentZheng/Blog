@@ -48,7 +48,7 @@
 		      <el-submenu index="4">
 		        <template slot="title">
 		          <i class="el-icon-setting"></i>
-		          <span>个人设置</span>
+		          <span>系统设置</span>
 		        </template>
 		        <router-link to='/personalInfo/confClassify'>
 		          <el-menu-item v-if="getCookies('userType') === '1'" index="4-1">
@@ -63,6 +63,12 @@
 		        	</el-menu-item>
 	        	</router-link>
 		      </el-submenu>
+		      <router-link to='/personalInfo/infoEdit'>
+			    	<el-menu-item index="1">
+			        <i class="el-icon-document"></i>
+			        <span slot="title">个人信息</span>
+			      </el-menu-item>
+		    	</router-link>
 		    </el-menu>
 		  </el-col>
 		  <el-col :span="13" :offset="1">
@@ -74,6 +80,7 @@
 				<question-edit v-if="pathName === 'questionEdit'"></question-edit>
 				<conf-classify v-if="pathName === 'confClassify'"></conf-classify>
 				<conf-other v-if="pathName === 'confOther'"></conf-other>
+				<info-edit v-if="pathName === 'infoEdit'"></info-edit>
 		  </el-col>
 		</el-row>
 	</div>
@@ -89,6 +96,7 @@
 	import QuestionEdit from './personal-question-edit'
 	import ConfClassify from './personal-conf-classify'
 	import ConfOther from './personal-conf-other'
+	import InfoEdit from './personal-info-edit'
 
 	export default{
 		data(){
@@ -105,6 +113,7 @@
 	    QuestionEdit,
 	    ConfClassify,
 	    ConfOther,
+	    InfoEdit,
 	  },
 	  computed:{
 	  	pathName(){

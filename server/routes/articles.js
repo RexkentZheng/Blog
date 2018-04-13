@@ -79,7 +79,7 @@ router.post('/list',(req,res,next)=>{
   let { articleAuthor } = req.body;
   Article.find({
     articleAuthor
-  },(err,doc)=>{
+  },'articleTitle articleAuthor articleIntroduce articleFirstTag articleSecondTag like articleCreatedTime',(err,doc)=>{
     if (err) {
       getWrong(res,err);
     } else {

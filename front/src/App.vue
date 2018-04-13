@@ -17,6 +17,9 @@
                   <router-link to="/question">问答</router-link>
                 </li>
                 <li>
+                  <router-link :to="{path:'/userInfo',query:{userId:getCookies('userId')}}">个人</router-link>
+                </li>
+                <li>
                   <router-link to="/messageBord">留言板</router-link>
                 </li>
               </ul>
@@ -51,6 +54,19 @@ export default {
     CommonLogin,
     CommonFooter
   },
+  methods:{
+    //查找cookie的方法
+    getCookies(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while(c.charAt(0) == ' ') c = c.substring(1);
+        if(c.indexOf(name) != -1) return c.substring(name.length, c.length);
+      }
+      return "";
+    },
+  }
 }
 </script>
 

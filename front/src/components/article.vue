@@ -19,6 +19,24 @@
 			  </template>
 			</el-autocomplete>
 		</div>
+		<div class="filter-part clearfix">
+			<el-select v-model="firstTag" @change='getSecondTags' @clear='$router.go(0)' clearable placeholder="一级分类" size='mini'>
+		    <el-option
+		      v-for="tag in tags"
+		      :key="tag.tagName"
+		      :label="tag.tagName"
+		      :value="tag.tagName">
+		    </el-option>
+		  </el-select>
+		  <el-select v-model="secondTag" @change='changeSecondTags' clearable placeholder="二级分类" size='mini'>
+		    <el-option
+		      v-for="tag in secondTags"
+		      :key="tag"
+		      :label="tag"
+		      :value="tag">
+		    </el-option>
+		  </el-select>
+		</div>
 		<div class="list-part">
 			<ul>
 				<li v-for='article in currentArticles'>
@@ -31,11 +49,9 @@
 							</p>
 						</li>
 						<li class="clearfix">
-							<p>
-							<router-link :to="{path:'/article/details',query:{_id:article._id}}">
+							<p><router-link :to="{path:'/userInfo',query:{userName:article.articleAuthor}}">
 									{{article.articleAuthor}}&nbsp
-								</router-link>
-						/ {{article.articleFirstTag}} / {{article.articleSecondTag}} / {{article.articleCreatedTime}} / 赞：{{article.like.length}}</p>
+								</router-link> / {{article.articleFirstTag}} / {{article.articleSecondTag}} / {{article.articleCreatedTime}} / 赞：{{article.like.length}}</p>
 						</li>
 						<li class="clearfix">
 							<p>{{article.articleIntroduce}}</p>
@@ -64,6 +80,10 @@
 				groupedArticles:[],
 				currentArticles:[],
 				pageSize:10,
+				firstTag:'',
+				secondTag:'',
+				tags:[],
+				secondTags:[]
 			}
 		},
 		mounted(){
@@ -78,6 +98,53 @@
 						this.sortArticles(this.articles);
 					}
 				})
+				axios.post('/confs/article/tags').then((response)=>{
+					let res = response.data;
+					if (res.status === 0) {
+						this.tags = res.result;
+					}
+				})
+			},
+			getSecondTags(val){
+				if (val !== '') {
+					this.tags.forEach((tag)=>{
+						if (tag.tagName === val) {
+							this.secondTags = tag.tagChild
+						}
+					})
+				} else {
+					this.secondTags = []
+				}
+				if (this.firstTag) {
+					this.firstTagFilter();
+				} else {
+					this.sortArticles(this.articles);
+				}
+			},
+			changeSecondTags(){
+				if (this.secondTag) {
+					this.secondTagFilter();
+				} else {
+					this.sortArticles(this.articles);
+				}
+			},
+			firstTagFilter(){
+				let passedArticles = [];
+				this.articles.forEach((article)=>{
+					if (article.articleFirstTag === this.firstTag) {
+						passedArticles.push(article);
+					}
+				});
+				this.sortArticles(passedArticles);
+			},
+			secondTagFilter(){
+				let passedArticles = [];
+				this.articles.forEach((article)=>{
+					if (article.articleSecondTag === this.secondTag) {
+						passedArticles.push(article);
+					}
+				});
+				this.sortArticles(passedArticles);
 			},
 			sortArticles(articles){
 				this.currentArticles = [];
@@ -112,7 +179,7 @@
 					if (res.status === 0) {
 						this.articles = res.result;
 						this.sortArticles(this.articles);
-					} else {}
+					}
 				})
 			}
 		}

@@ -19,6 +19,24 @@
 			  </template>
 			</el-autocomplete>
 		</div>
+		<div class="filter-part clearfix">
+			<el-select v-model="firstTag" @change='getSecondTags' @clear='$router.go(0)' clearable placeholder="一级分类" size='mini'>
+		    <el-option
+		      v-for="tag in tags"
+		      :key="tag.tagName"
+		      :label="tag.tagName"
+		      :value="tag.tagName">
+		    </el-option>
+		  </el-select>
+		  <el-select v-model="secondTag" @change='changeSecondTags' clearable placeholder="二级分类" size='mini'>
+		    <el-option
+		      v-for="tag in secondTags"
+		      :key="tag"
+		      :label="tag"
+		      :value="tag">
+		    </el-option>
+		  </el-select>
+		</div>
 		<div class="list-part">
 			<ul>
 				<li v-for='question in currentQuestions'>
@@ -31,7 +49,7 @@
 							</p>
 						</li>
 						<li class="clearfix">
-							<p><router-link :to="{path:'/question/details',query:{_id:question._id}}">
+							<p><router-link :to="{path:'/userInfo',query:{userName:question.questionAuthor}}">
 									{{question.questionAuthor}}&nbsp
 								</router-link>
 						/ {{question.questionFirstTag}} / {{question.questionSecondTag}} / {{question.questionCreatedTime}} / 赞：{{question.like.length}}</p>
@@ -63,6 +81,10 @@
 				groupedQuestions:[],
 				currentQuestions:[],
 				pageSize:10,
+				firstTag:'',
+				secondTag:'',
+				tags:[],
+				secondTags:[]
 			}
 		},
 		mounted(){
@@ -80,6 +102,53 @@
 			      this.currentQuestions = this.groupedQuestions[0]
 					}
 				})
+				axios.post('/confs/question/tags').then((response)=>{
+					let res = response.data;
+					if (res.status === 0) {
+						this.tags = res.result;
+					}
+				})
+			},
+			getSecondTags(val){
+				if (val !== '') {
+					this.tags.forEach((tag)=>{
+						if (tag.tagName === val) {
+							this.secondTags = tag.tagChild
+						}
+					})
+				} else {
+					this.secondTags = []
+				}
+				if (this.firstTag) {
+					this.firstTagFilter();
+				} else {
+					this.sortQuestions(this.questions);
+				}
+			},
+			changeSecondTags(){
+				if (this.secondTag) {
+					this.secondTagFilter();
+				} else {
+					this.sortQuestions(this.questions);
+				}
+			},
+			firstTagFilter(){
+				let passedQuestions = [];
+				this.questions.forEach((question)=>{
+					if (question.questionFirstTag === this.firstTag) {
+						passedQuestions.push(question);
+					}
+				});
+				this.sortQuestions(passedQuestions);
+			},
+			secondTagFilter(){
+				let passedQuestions = [];
+				this.questions.forEach((question)=>{
+					if (question.questionSecondTag === this.secondTag) {
+						passedQuestions.push(question);
+					}
+				});
+				this.sortQuestions(passedQuestions);
 			},
 			sortQuestions(questions){
 				this.currentQuestions = [];
