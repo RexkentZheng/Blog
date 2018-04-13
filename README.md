@@ -11,10 +11,10 @@ http://www.runoob.com/mongodb/mongodb-osx-install.html
 http://www.imooc.com/article/18438
 
 ### 导入数据库文件
-##### 数据库文件在mongo里面，这里推荐使用Studio 3Thttps://studio3t.com/
+##### 数据库文件在mongo里面，这里推荐使用[Studio 3T](https://studio3t.com/)
 ##### 安装之后新建Database，数据库名为blog
 ##### 之后往数据库中导入数据库文件
-### 安装依赖兵并启动项目
+### 安装依赖并启动项目
 ```
 cd blog/front && npm i && npm start
 ```
